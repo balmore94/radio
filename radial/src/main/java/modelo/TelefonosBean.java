@@ -26,11 +26,11 @@ public class TelefonosBean {
         this.telefono1 = telefono1;
     }
 
-    public Compania getCompania() {
+    public CompaniaBean getCompania() {
         return compania;
     }
 
-    public void setCompania(Compania compania) {
+    public void setCompania(CompaniaBean compania) {
         this.compania = compania;
     }
 
