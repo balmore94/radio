@@ -5,6 +5,7 @@
  */
 package dao;
 
+import conexion.Conexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -15,17 +16,17 @@ import modelo.CompaniaBean;
  *
  * @author rodrigo.martinezusam
  */
-public class CompaniaDAO {
+public class CompaniaDAO{
     
+    Conexion conn;
    
     public void eliminar(int id) throws Exception {
         
-        try {           
+        try {
+            String query="";
            
         } catch (Exception e) {
             throw e;
-        }finally{
-        
         }
     }
 
@@ -36,23 +37,24 @@ public class CompaniaDAO {
 
         } catch (Exception e) {
             throw e;
-        } finally {
-
-        }
+        } 
     }
 
     public List<CompaniaBean> llenarCompania() throws Exception {
 
         List<CompaniaBean> Lista = new ArrayList<>();
         try {
-            String query = "";
-            // PreparedStatements stm= this.conn.
-            //ResultSet rs =
+            String query = "select * from compania";
+             PreparedStatement stm = this.conn.conectar().prepareStatement(query);
+             ResultSet rs = stm.executeQuery();
+             while(rs.next()){
+             
+                 CompaniaBean con = new CompaniaBean();
+             }
 
         } catch (Exception e) {
             throw e;
-        } finally {
-        }
+        } 
         return Lista;
     }
 

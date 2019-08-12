@@ -83,6 +83,10 @@ public class ProgramaradioBean {
     public void setEmisiones(programaemisionesBean emisiones) {
         this.emisiones = emisiones;
     }
+
+    public ProgramaradioBean(int id_programaradio) {
+        this.id_programaradio = id_programaradio;
+    }
     
     
     
