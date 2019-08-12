@@ -4,7 +4,7 @@ public class TelefonosBean {
 
     private int id_telefono;
     private String telefono1;
-    private Compania compania;
+    private CompaniaBean compania;
 
     public TelefonosBean(int id_telefono) {
         this.id_telefono = id_telefono;
