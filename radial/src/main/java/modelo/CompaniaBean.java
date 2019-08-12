@@ -38,6 +38,10 @@ public class CompaniaBean {
     public void setNombre_compania(String nombre_compania) {
         this.nombre_compania = nombre_compania;
     }
+
+    public CompaniaBean(int id_caompania) {
+        this.id_caompania = id_caompania;
+    }
       
     
 }
