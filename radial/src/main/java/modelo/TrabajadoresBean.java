@@ -65,6 +65,10 @@ public class TrabajadoresBean {
     public void setPrograma_trabajdor(ProgramasBean programa_trabajdor) {
         this.programa_trabajdor = programa_trabajdor;
     }
+
+    public TrabajadoresBean(int id_trabajadores) {
+        this.id_trabajadores = id_trabajadores;
+    }
     
     
 }
