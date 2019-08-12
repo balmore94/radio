@@ -42,4 +42,6 @@ public class EmisionesDao {
     }
     
     public List<EmisionesBean> consultarAll(){
+        String sql = "";
+    }
 }
