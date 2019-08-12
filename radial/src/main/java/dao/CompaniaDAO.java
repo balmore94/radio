@@ -53,6 +53,7 @@ public class CompaniaDAO {
             throw e;
         } finally {
         }
+        return Lista;
     }
 
 }
