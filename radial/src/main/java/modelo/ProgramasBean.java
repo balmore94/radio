@@ -1,6 +1,10 @@
 
 package modelo;
 
+/**
+ *
+ * @author mario.rodriguezusam
+ */
 public class ProgramasBean {
     
     private int id_programa;

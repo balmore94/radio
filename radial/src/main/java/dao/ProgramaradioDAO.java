@@ -87,16 +87,27 @@ public class ProgramaradioDAO {
 
     public List<ProgramaradioBean> findAll() throws Exception {
 
-        String query = "/**Mantenimiento**/";
+        String query = "Select  programa_radio.*,radio.*,programas.*,emisiones.*  from programa_radio,radio,programas,emisiones where programa_radio.radio =radio.id_radio and programa_radio.programa = programas.id_programa and programa_radio.emisiones = emisiones.id_emisiones;";
         try {
             PreparedStatement stm = this.conn.conectar().prepareStatement(query);
             ResultSet rt = stm.executeQuery();
             List<ProgramaradioBean> Lista = new LinkedList<>();
             while (rt.next()) {
-                ProgramaradioBean prb = new ProgramaradioBean(rt.getInt("id_programasradio"));
-                /**
-                 * *****En proceso******
-                 */
+                ProgramaradioBean prb = new ProgramaradioBean(rt.getInt("id_programaradio"));
+                ProgramasBean pro = new ProgramasBean(rt.getInt("programa"));
+                pro.setNombre_programa(rt.getString("nombre_programa"));
+                prb.setPrograma(pro);
+                RadioBean rad = new RadioBean(rt.getInt("radio"));
+                rad.setNombre_radio(rt.getString("nombre_radio"));
+                prb.setRadio(rad);
+                prb.setFecha(rt.getDate("fecha"));
+                prb.setHora_inicio(rt.getTime("hora_inicio"));
+                prb.setDuracion(rt.getInt("duracion"));
+                prb.setRepeticion(rt.getBoolean("repeticion"));
+                EmisionesBean em = new EmisionesBean(rt.getInt("emisiones"));
+                em.setEmision(rt.getString("emision"));
+                prb.setEmisiones(em);
+                Lista.add(prb);
             }
             return Lista;
         } catch (Exception e) {
@@ -106,7 +117,7 @@ public class ProgramaradioDAO {
 
     public List<ProgramaradioBean> finbyID(int id) throws Exception{
         
-        String query="";
+        String query="Select  programa_radio.*,radio.*,programas.*,emisiones.*  from programa_radio,radio,programas,emisiones where programa_radio.radio =radio.id_radio and programa_radio.programa = programas.id_programa and programa_radio.emisiones = emisiones.id_emisiones where programa_radio.id_programaradio=?;";
         try {
             
             PreparedStatement stm = this.conn.conectar().prepareStatement(query);
@@ -114,7 +125,21 @@ public class ProgramaradioDAO {
             ResultSet rt = stm.executeQuery();
             List<ProgramaradioBean> programaradio = new LinkedList<>();
             while(rt.next()){
-            /****En proceso***/
+                ProgramaradioBean prb = new ProgramaradioBean(rt.getInt("id_programaradio"));
+                ProgramasBean pro = new ProgramasBean(rt.getInt("programa"));
+                pro.setNombre_programa(rt.getString("nombre_programa"));
+                prb.setPrograma(pro);
+                RadioBean rad = new RadioBean(rt.getInt("radio"));
+                rad.setNombre_radio(rt.getString("nombre_radio"));
+                prb.setRadio(rad);
+                prb.setFecha(rt.getDate("fecha"));
+                prb.setHora_inicio(rt.getTime("hora_inicio"));
+                prb.setDuracion(rt.getInt("duracion"));
+                prb.setRepeticion(rt.getBoolean("repeticion"));
+                EmisionesBean em = new EmisionesBean(rt.getInt("emisiones"));
+                em.setEmision(rt.getString("emision"));
+                prb.setEmisiones(em);
+                programaradio.add(prb);
             }
             return programaradio;
         } catch (Exception e) {

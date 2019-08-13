@@ -1,14 +1,17 @@
 
 package modelo;
 
-
+/**
+ *
+ * @author mario.rodriguezusam
+ */
 public class EncuestasBean {
     
     private int id_escuentas;
     private int total_encuestados;
     private int aprobaciones;
     private int rechazos;
-    private int indeferencias;
+    private int indiferencias;
     private ProgramasBean programa;
 
     public EncuestasBean(int id_escuentas) {
@@ -47,12 +50,12 @@ public class EncuestasBean {
         this.rechazos = rechazos;
     }
 
-    public int getIndeferencias() {
-        return indeferencias;
+    public int getIndiferencias() {
+        return indiferencias;
     }
 
-    public void setIndeferencias(int indeferencias) {
-        this.indeferencias = indeferencias;
+    public void setIndiferencias(int indeferencias) {
+        this.indiferencias = indeferencias;
     }
 
     public ProgramasBean getPrograma() {
