@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Conexion {
-    static String bd = "agenda";
+    static String bd = "radio";
     static String usuer = "root";
     static String pass = "root";
     static String url = "jdbc:mysql://localhost/" + bd + "?useSSL=false";
