@@ -15,7 +15,7 @@ public class TrabajadoresBean {
     private String nombre_trabajador;
     private String apellido_trabajador;
     private String dui;
-    private CargoBean cargo;
+    private CargosBean cargo;
     private ProgramasBean programa_trabajdor;
 
     public int getId_trabajadores() {
