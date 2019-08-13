@@ -1,7 +1,10 @@
 
 package modelo;
 
-
+/**
+ *
+ * @author mario.rodriguezusam
+ */
 public class Tipo_transmisionBean {
     
     private int id_transmision;

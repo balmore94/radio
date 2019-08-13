@@ -17,12 +17,8 @@
         <servlet-class>controlador.TelefonosServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CompaniServelet</servlet-name>
-        <servlet-class>controlador.CompaniServelet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ProgramaRadioServlet</servlet-name>
-        <servlet-class>controlador.ProgramaRadioServlet</servlet-class>
+        <servlet-name>CargosServlet</servlet-name>
+        <servlet-class>controlador.CargosServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>EmisionesServlet</servlet-name>
@@ -41,12 +37,8 @@
         <url-pattern>/telefonos</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CompaniServelet</servlet-name>
-        <url-pattern>/compani</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ProgramaRadioServlet</servlet-name>
-        <url-pattern>/programaradio</url-pattern>
+        <servlet-name>CargosServlet</servlet-name>
+        <url-pattern>/cargos</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
