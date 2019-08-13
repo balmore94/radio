@@ -1,6 +1,6 @@
 <%-- 
-    Document   : emisiones
-    Created on : 08-13-2019, 11:23:55 AM
+    Document   : telefonos
+    Created on : 08-13-2019, 11:29:47 AM
     Author     : maria.aguillonusam
 --%>
 
@@ -15,26 +15,28 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-         <div class="container col-md-8">
+        <div class="container col-md-8">
         <div >
-            <h2>EMISIONES</h2>        
+            <h2>AEROPUERTO</h2>        
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Id Emisiones</th>
-                        <th>Emision</th>                        
+                        <th>Id Telefono</th>
+                        <th>Telefono 1</th>
+                        <th>Compania</th>      
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <c:forEach items="${lista}" var="ver">
                         <tr>
-                            <td>${ver.id_emisiones}</td>
-                            <td>${ver.emision}</td>                           
+                            <td>${ver.id_telefono}</td>
+                            <td>${ver.telefono1}</td>
+                            <td>${ver.compania}</td> 
 
                             <td>
-                                <a href="emisiones?action=eliminar&id_emisiones=${ver.id_emisiones}"><button class="btn btn-danger">Eliminar</button></a>
-                                <a href="emisiones?action=consultarById&id_emisiones=${ver.id_emisiones}"><button class="btn btn-info">Modificar</button></a>                           
+                                <a href="telefonos?action=eliminar&id_telefono=${ver.id_telefono}"><button class="btn btn-danger">Eliminar</button></a>
+                                <a href="telefonos?action=consultarById&id_telefono=${ver.id_telefono}"><button class="btn btn-info">Modificar</button></a>                           
                             </td>                    
                         </tr>
                     </c:forEach>                 
