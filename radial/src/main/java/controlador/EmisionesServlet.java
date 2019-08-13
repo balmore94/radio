@@ -12,65 +12,59 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.EmisionesBean;
 
 public class EmisionesServlet extends HttpServlet {
-
     Conexion conn = new Conexion();
     EmisionesDao ed = new EmisionesDao(conn);
     RequestDispatcher rd;
     String msg;
     boolean respuesta;
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
-        switch (action) {
-            case "insertar":
-                insertar(request, response);
-                break;
-            case "actualizar":
-                actualizar(request, response);
-                break;
-            case "consultarAll":
-                consultarAll(request, response);
-                break;
-            case "consultarById":
-                consultarById(request, response);
-                break;
-            case "eliminar":
-                eliminar(request, response);
+        switch (action){
+            case "insertar": insertar(request, response);
+            break;
+            case "actualizar": actualizar(request, response);
+            break;
+            case "consultarAll": consultarAll(request, response);
+            break;
+            case "consultarById": consultarById(request, response);
+            break;
+            case "eliminar": eliminar(request, response);
         }
     }
-
+    
     protected void insertar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String emision = request.getParameter("emision");
-
+        
         EmisionesBean eb = new EmisionesBean(0);
         eb.setEmision(emision);
-
+        
         respuesta = ed.insertar(eb);
-        if (respuesta) {
+        if(respuesta){
             msg = "Guardado";
-        } else {
+        }else{
             msg = "No guardado";
         }
         request.setAttribute("msg", msg);
         rd = request.getRequestDispatcher("/registroEmisiones.jsp");
         rd.forward(request, response);
     }
-
+    
     protected void actualizar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int id_emisiones = Integer.parseInt(request.getParameter("id_emisiones"));
         String emision = request.getParameter("emision");
-
+        
         EmisionesBean eb = new EmisionesBean(id_emisiones);
         eb.setEmision(emision);
-
+        
         respuesta = ed.actualizar(eb);
         List<EmisionesBean> lista = ed.consultarAll();
         if (respuesta) {
             msg = "Actualizado";
-        } else {
+        }else{
             msg = "No actualizado";
         }
         request.setAttribute("msg", msg);
@@ -78,7 +72,6 @@ public class EmisionesServlet extends HttpServlet {
         rd = request.getRequestDispatcher("/emisiones.jsp");
         rd.forward(request, response);
     }
-
     protected void consultarAll(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<EmisionesBean> lista = ed.consultarAll();
@@ -86,7 +79,7 @@ public class EmisionesServlet extends HttpServlet {
         rd = request.getRequestDispatcher("/emisiones.jsp");
         rd.forward(request, response);
     }
-
+    
     protected void consultarById(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int id_emision = Integer.parseInt(request.getParameter("id_emision"));
@@ -95,7 +88,6 @@ public class EmisionesServlet extends HttpServlet {
         rd = request.getRequestDispatcher("/editarEmisiones.jsp");
         rd.forward(request, response);
     }
-
     protected void eliminar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int id_emision = Integer.parseInt(request.getParameter("id_emision"));
@@ -103,7 +95,7 @@ public class EmisionesServlet extends HttpServlet {
         List<EmisionesBean> lista = ed.consultarAll();
         if (respuesta) {
             msg = "Eliminado";
-        } else {
+        }else{
             msg = "No eliminado";
         }
         request.setAttribute("msg", msg);
@@ -111,6 +103,8 @@ public class EmisionesServlet extends HttpServlet {
         rd = request.getRequestDispatcher("/emisiones.jsp");
         rd.forward(request, response);
     }
+    
+    
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

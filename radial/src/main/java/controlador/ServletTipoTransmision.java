@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Tipo_transmisionBean;
 
-public class TipoTServlet extends HttpServlet {
+public class ServletTipoTransmision extends HttpServlet {
     
     Conexion conn = new Conexion();
     Tipo_TransmisionDAO tipotDAO = new Tipo_TransmisionDAO(conn);

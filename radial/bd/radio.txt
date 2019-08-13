@@ -1,0 +1,106 @@
+create database radio;
+
+use radio;
+
+create table tipo_transmision(
+id_transmision int not null primary key auto_increment,
+nombre_transmision varchar (2) not null
+);
+
+
+create table genero(
+id_genero int not null primary key auto_increment,
+nombre_genero varchar (50) not null
+#genero si es deportivo, musical, variedades, periodistico bla bla bla 
+);
+
+create table programas(
+id_programa int not null primary key auto_increment,
+nombre_programa varchar (250) not null,
+genero int not null,
+constraint genero_programas foreign key (genero) references genero (id_genero) on update cascade on delete cascade
+);
+
+
+
+create table radio(
+id_radio int not null primary key auto_increment,
+nombre_radio varchar (50) not null,
+frecuencia varchar (5) not null,
+transmision int not null,
+programa int not null,
+constraint transmision_radio foreign key (transmision) references tipo_transmision (id_transmision) on update cascade on delete cascade,
+constraint programa_radio foreign key (programa) references programas (id_programa) on update cascade on delete cascade
+);
+
+create table emisiones(
+id_emisiones int not null primary key auto_increment,
+emision varchar (25) not null 
+#matutino, vespertino y nocturno
+);
+
+
+create table programa_radio(
+id_programaradio int not null primary key auto_increment,
+programa int not null,
+radio int not null,
+fecha date not null,
+hora_inicio time not null,
+duracion int not null,
+repeticion boolean not null,
+emisiones int not null,
+constraint programa_ra foreign key (programa) references programas (id_programa) on update cascade on delete cascade,
+constraint radio_ra foreign key (radio) references radio (id_radio) on update cascade on delete cascade,
+constraint programa_emisiones foreign key (emisiones) references emisiones (id_emisiones) on update cascade on delete cascade
+);
+
+create table encuentas(
+id_encuestas int not null primary key auto_increment,
+total_encuestados int not null,
+aprobaciones int not null,
+rechazos int not null,
+indiferencias int not null,
+programa int not null,
+constraint programa_encuesta foreign key (programa) references programas (id_programa) on update cascade on delete cascade
+);
+
+create table compania(
+id_compania int not null primary key auto_increment,
+registrofc varchar (50) not null,
+nombre_compania varchar (80) not null unique
+);
+
+create table telefonos(
+id_telefono int not null primary key auto_increment,
+telefono1 varchar (9) not null,
+compania int not null,
+constraint compania_telefono foreign key (compania) references compania (id_compania) on update cascade on delete cascade
+);
+
+create table consorcios(
+id_consorcio int not null primary key auto_increment,
+radio_consorcio int not null,
+programa_consorcio int not null,
+compania_consorcio int not null,
+constraint consorcio_radio foreign key (radio_consorcio) references radio (id_radio) on update cascade on delete cascade,
+constraint consorcio_programa foreign key (programa_consorcio) references programas (id_programa) on update cascade on delete cascade,
+constraint consorcio_compania foreign key (compania_consorcio) references compania (id_compania) on update cascade on delete cascade
+);
+
+create table cargos(
+id_cargo int not null primary key auto_increment,
+cargo varchar (50) not null
+);
+
+create table trabajadores(
+id_trabajadores int not null primary key auto_increment,
+nombre_trbajador varchar (50) not null,
+apellido_trabajador varchar (50) not null,
+dui varchar (10) not null,
+cargo int not null,
+programa_trabajador int not null, 
+constraint cargo_trabajador foreign key (cargo) references cargos (id_cargo) on update cascade on delete cascade,
+constraint trabajador_programa foreign key (programa_trabajador) references programas (id_programa) on update cascade on delete cascade
+);
+
+
