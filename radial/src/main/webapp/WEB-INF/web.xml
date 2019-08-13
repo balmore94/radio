@@ -16,14 +16,14 @@
     <servlet-mapping>
         <servlet-name>TelefonosServlet</servlet-name>
         <url-pattern>/telefonos</url-pattern>
-=======
+
         <servlet-name>GeneroServlet</servlet-name>
         <servlet-class>controlador.GeneroServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GeneroServlet</servlet-name>
         <url-pattern>/genero</url-pattern>
->>>>>>> 79f6c57bf895eefab11d7ff0dbe5cbd9cf20df07
+
     </servlet-mapping>
     <session-config>
         <session-timeout>
