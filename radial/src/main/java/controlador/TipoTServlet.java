@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Tipo_transmisionBean;
 
+/**
+ *
+ * @author mario.rodriguezusam
+ */
 public class TipoTServlet extends HttpServlet {
     
     Conexion conn = new Conexion();
