@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
+<<<<<<< HEAD
+        <servlet-name>EmisionesServlet</servlet-name>
+        <servlet-class>controlador.EmisionesServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TelefonosServlet</servlet-name>
+        <servlet-class>controlador.TelefonosServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EmisionesServlet</servlet-name>
+        <url-pattern>/emisiones</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TelefonosServlet</servlet-name>
+        <url-pattern>/telefonos</url-pattern>
+=======
         <servlet-name>GeneroServlet</servlet-name>
         <servlet-class>controlador.GeneroServlet</servlet-class>
     </servlet>
@@ -11,6 +27,7 @@
     <servlet-mapping>
         <servlet-name>GeneroServlet</servlet-name>
         <url-pattern>/genero</url-pattern>
+>>>>>>> 79f6c57bf895eefab11d7ff0dbe5cbd9cf20df07
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CompaniaServlet</servlet-name>

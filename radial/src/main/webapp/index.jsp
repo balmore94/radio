@@ -12,6 +12,6 @@
         <title>Index</title>
     </head>
     <body>
-        <jsp:forward page="ServletTipoTransmision?action=mostrar" />
+        <h1>Hello World!</h1>
     </body>
 </html>
