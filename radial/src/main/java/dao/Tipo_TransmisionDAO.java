@@ -28,6 +28,7 @@ public class Tipo_TransmisionDAO {
             Tipo_transmisionBean tipot;
             while (rs.next()) {
                 tipot = new Tipo_transmisionBean(rs.getInt("id_transmision"));
+                tipot.setId_transmision(rs.getInt("id_transmision"));
                 tipot.setNombre_transmision(rs.getString("nombre_transmision"));
                 lista.add(tipot);
             }
