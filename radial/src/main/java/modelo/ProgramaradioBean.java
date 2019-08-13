@@ -5,6 +5,9 @@
  */
 package modelo;
 
+import java.sql.Date;
+import java.sql.Time;
+
 /**
  *
  * @author rodrigo.martinezusam
@@ -14,8 +17,8 @@ public class ProgramaradioBean {
     private int id_programaradio;
     private ProgramasBean programa;
     private RadioBean radio;
-    private String fecha;
-    private String hora_inicio;
+    private Date fecha;
+    private Time hora_inicio;
     private int duracion;
     private boolean repeticion;
     private EmisionesBean emisiones;
@@ -28,7 +31,13 @@ public class ProgramaradioBean {
         this.id_programaradio = id_programaradio;
     }
 
-    
+    public ProgramasBean getPrograma() {
+        return programa;
+    }
+
+    public void setPrograma(ProgramasBean programa) {
+        this.programa = programa;
+    }
 
     public RadioBean getRadio() {
         return radio;
@@ -38,19 +47,19 @@ public class ProgramaradioBean {
         this.radio = radio;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
-    public String getHora_inicio() {
+    public Time getHora_inicio() {
         return hora_inicio;
     }
 
-    public void setHora_inicio(String hora_inicio) {
+    public void setHora_inicio(Time hora_inicio) {
         this.hora_inicio = hora_inicio;
     }
 
@@ -62,24 +71,12 @@ public class ProgramaradioBean {
         this.duracion = duracion;
     }
 
-    public boolean isRepeticion() {
+    public boolean getRepeticion() {
         return repeticion;
     }
 
     public void setRepeticion(boolean repeticion) {
         this.repeticion = repeticion;
-    }
-
-    public ProgramaradioBean(int id_programaradio) {
-        this.id_programaradio = id_programaradio;
-    }
-
-    public ProgramasBean getPrograma() {
-        return programa;
-    }
-
-    public void setPrograma(ProgramasBean programa) {
-        this.programa = programa;
     }
 
     public EmisionesBean getEmisiones() {
@@ -89,7 +86,11 @@ public class ProgramaradioBean {
     public void setEmisiones(EmisionesBean emisiones) {
         this.emisiones = emisiones;
     }
-    
-    
+
+    public ProgramaradioBean(int id_programaradio) {
+        this.id_programaradio = id_programaradio;
+    }
+
+ 
     
 }

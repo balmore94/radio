@@ -11,12 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Tipo_transmisionBean;
 
-public class ServletTipoTransmision extends HttpServlet {
-    
+
+public class TipoTransmiServlet extends HttpServlet {
+
     Conexion conn = new Conexion();
     Tipo_TransmisionDAO tipotDAO = new Tipo_TransmisionDAO(conn);
     RequestDispatcher rd;
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -24,41 +24,25 @@ public class ServletTipoTransmision extends HttpServlet {
             case "mostrar":mostrar(request, response);
         }
     }
+
     protected void mostrar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<Tipo_transmisionBean> tipo = tipotDAO.MostrarTipoTransmision();
         request.setAttribute("tipo", tipo);
-        rd = request.getRequestDispatcher("tipotransmision.jsp");
+        rd = request.getRequestDispatcher("/tipotransmision.jsp");
         rd.forward(request, response);
         
     }
-    protected void guardar(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-    }
-    protected void eliminar(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-    }
-    protected void getById(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-    }
-    protected void update(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
+   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
 }
