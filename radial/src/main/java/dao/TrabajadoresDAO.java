@@ -114,10 +114,11 @@ public class TrabajadoresDAO {
               tr.setApellido_trabajador(rt.getString("apellido_trabajador"));
               tr.setDui(rt.getString("dui"));
               
-              return trabajadores;
+               /*----------------------Incompleto---------------------------*/
              }
+             return trabajadores;
         } catch (Exception e) {
-        throw e;
+          throw e;
         }
     }
 
