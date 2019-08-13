@@ -36,7 +36,19 @@ public class CompaniServelet extends HttpServlet {
         String action = request.getParameter("action");
         
         switch(action){
-            case "insertar":Insertar(request, response);
+            case "Insertar":Insertar(request, response);
+            break;
+            
+            case "update" :update(request, response);
+            break;
+            
+            case "Eliminar": Eliminar(request, response);
+            break;
+            
+            case "findAll": findAll(request, response);
+            break;
+            
+            case "search":search(request, response);
             break;
         }
 

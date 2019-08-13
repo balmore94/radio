@@ -24,6 +24,10 @@
         <servlet-name>ProgramaRadioServlet</servlet-name>
         <servlet-class>controlador.ProgramaRadioServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TrabajadoresServlet</servlet-name>
+        <servlet-class>controlador.TrabajadoresServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>EmisionesServlet</servlet-name>
         <url-pattern>/emisiones</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>ProgramaRadioServlet</servlet-name>
         <url-pattern>/programaradio</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TrabajadoresServlet</servlet-name>
+        <url-pattern>/trabajadores</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

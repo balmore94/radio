@@ -1,64 +1,56 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controlador;
 
-import conexion.Conexion;
-import dao.Tipo_TransmisionDAO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Tipo_transmisionBean;
+import modelo.CompaniaBean;
 
 /**
  *
- * @author mario.rodriguezusam
+ * @author rodrigo.martinezusam
  */
-public class TipoTServlet extends HttpServlet {
-
-    Conexion conn = new Conexion();
-    Tipo_TransmisionDAO tipotDAO = new Tipo_TransmisionDAO(conn);
-    RequestDispatcher rd;
+public class TrabajadoresServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter("action");
-        switch (action) {
-            case "mostrar":
-                mostrar(request, response);
 
-                break;
+        String action = request.getParameter("action");
+
+        switch (action) {
+
         }
     }
 
-    protected void mostrar(HttpServletRequest request, HttpServletResponse response)
+    protected void insertar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Tipo_transmisionBean> tipo = tipotDAO.MostrarTipoTransmision();
-        request.setAttribute("tipo", tipo);
-        rd = request.getRequestDispatcher("mostrarTipoT.jsp");
-        rd.forward(request, response);
-
-    }
-
-    protected void guardar(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-    }
-
-    protected void eliminar(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-    }
-
-    protected void getById(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+           
+        String nombre_trabajador = request.getParameter("nombre_trabajador");
+        String apellido_trabajador = request.getParameter("apellido_trabajador");
     }
 
     protected void update(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    }
 
+    protected void findAll(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    }
+
+    protected void eliminar(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    }
+
+    protected void search(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
     }
 
     @Override
