@@ -52,7 +52,7 @@ public class CargosServlet extends HttpServlet {
             throws ServletException, IOException {
         List<CargosBean> lista = cd.consultarAll();
         request.setAttribute("lista", lista);
-        rd = request.getRequestDispatcher("/cargod.jsp");
+        rd = request.getRequestDispatcher("/cargos.jsp");
         rd.forward(request, response);
     }
     
