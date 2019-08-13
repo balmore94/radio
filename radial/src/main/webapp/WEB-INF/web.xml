@@ -16,6 +16,10 @@
         <servlet-name>TelefonosServlet</servlet-name>
         <servlet-class>controlador.TelefonosServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CargosServlet</servlet-name>
+        <servlet-class>controlador.CargosServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>EmisionesServlet</servlet-name>
         <url-pattern>/emisiones</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>TelefonosServlet</servlet-name>
         <url-pattern>/telefonos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CargosServlet</servlet-name>
+        <url-pattern>/cargos</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
