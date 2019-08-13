@@ -16,7 +16,7 @@ public class TrabajadoresBean {
     private String apellido_trabajador;
     private String dui;
     private CargosBean cargo;
-    private ProgramasBean programa_trabajdor;
+    private ProgramasBean programa_trabajador;
 
     public int getId_trabajadores() {
         return id_trabajadores;
@@ -61,11 +61,11 @@ public class TrabajadoresBean {
     
 
     public ProgramasBean getPrograma_trabajdor() {
-        return programa_trabajdor;
+        return programa_trabajador;
     }
 
     public void setPrograma_trabajdor(ProgramasBean programa_trabajdor) {
-        this.programa_trabajdor = programa_trabajdor;
+        this.programa_trabajador = programa_trabajdor;
     }
 
     public TrabajadoresBean(int id_trabajadores) {

@@ -94,7 +94,7 @@ public class RadioDao {
     }
     
     public List<RadioBean>findById(int id){
-        String sql = "select radio.*, tipo_transmision.*, programas.* from radio, tipo_transmision, programas where radio.transmision = tipo_transmision.id_transmision and radio.programa = programas.id_programa";
+        String sql = "select radio.*, tipo_transmision.*, programas.* from radio, tipo_transmision, programas where radio.transmision = tipo_transmision.id_transmision and radio.programa = programas.id_programa Where radio.id_radio=?";
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
             ps.setInt(1, id);

@@ -81,7 +81,7 @@ public class TrabajadoresDAO {
     }
 
     public List<TrabajadoresBean> LlenarTrabajadores() throws Exception {
-        String query = "Select* from trabajadores;";
+        String query = "Select trabajadores.*,cargos.*,programas.* from trabajadores,cargos,programas where trabajadores.cargo = cargos.id_cargo and trabajadores.programa_trabajador = programas.id_programa;";
         try {
             PreparedStatement stm = this.conn.conectar().prepareStatement(query);
             ResultSet rt = stm.executeQuery();
@@ -92,8 +92,12 @@ public class TrabajadoresDAO {
                 tra.setApellido_trabajador(rt.getString("apellido_trabajador"));
                 tra.setDui(rt.getString("dui"));
                 CargosBean car = new CargosBean(rt.getInt("id_cargo"));
-                
-                /*----------------------Incompleto---------------------------*/
+                car.setCargo(rt.getString("cargo"));
+                tra.setCargo(car);
+                ProgramasBean pro = new ProgramasBean(rt.getInt("programa_trabajador"));
+                pro.setNombre_programa(rt.getString("nombre_programa"));
+                tra.setPrograma_trabajdor(pro);
+                Lista.add(tra);                
             }
             return Lista;
         } catch (Exception e) {
@@ -102,19 +106,24 @@ public class TrabajadoresDAO {
     }
 
     public List<TrabajadoresBean> findbyid(int id) throws Exception{
-        String query = "Select * from trabajadores where id_trabajadores=?";
+        String query = "Select trabajadores.*,cargos.*,programas.* from trabajadores,cargos,programas where trabajadores.cargo = cargos.id_cargo and trabajadores.programa_trabajador = programas.id_programa where trabajadores.id_trabajadores=?;";
           try {
              PreparedStatement stm = this.conn.conectar().prepareStatement(query);
              stm.setInt(1, id);
              ResultSet rt = stm.executeQuery();
              List<TrabajadoresBean> trabajadores = new LinkedList<>();
              while(rt.next()){
-             TrabajadoresBean tr = new TrabajadoresBean(rt.getInt("id_trabajadores"));
-              tr.setNombre_trabajador(rt.getString("nombre_trabajador"));
-              tr.setApellido_trabajador(rt.getString("apellido_trabajador"));
-              tr.setDui(rt.getString("dui"));
-              
-               /*----------------------Incompleto---------------------------*/
+                TrabajadoresBean tra = new TrabajadoresBean(rt.getInt("id_trabajadores"));
+                tra.setNombre_trabajador(rt.getString("nombre_trabajador"));
+                tra.setApellido_trabajador(rt.getString("apellido_trabajador"));
+                tra.setDui(rt.getString("dui"));
+                CargosBean car = new CargosBean(rt.getInt("id_cargo"));
+                car.setCargo(rt.getString("cargo"));
+                tra.setCargo(car);
+                ProgramasBean pro = new ProgramasBean(rt.getInt("programa_trabajador"));
+                pro.setNombre_programa(rt.getString("nombre_programa"));
+                tra.setPrograma_trabajdor(pro);
+                trabajadores.add(tra);   
              }
              return trabajadores;
         } catch (Exception e) {
