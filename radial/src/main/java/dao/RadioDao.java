@@ -99,7 +99,7 @@ public class RadioDao {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            List<RadioBean> radios = new LinkedList<>();
+            List<RadioBean> radio = new LinkedList<>();
             while(rs.next()){
                 RadioBean rad = new RadioBean(rs.getInt("id_radio"));
                 rad.setNombre_radio(rs.getString("nombre_radio"));
@@ -110,9 +110,9 @@ public class RadioDao {
                 ProgramasBean prb = new ProgramasBean(rs.getInt("programa"));
                 prb.setNombre_programa(rs.getString("nombre_programa"));
                 rad.setPrograma(prb);
-                radios.add(rad);
+                radio.add(rad);
             }
-            return radios;
+            return radio;
         } catch (Exception e) {
             return null;
         }

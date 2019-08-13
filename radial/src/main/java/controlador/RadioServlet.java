@@ -3,8 +3,7 @@ package controlador;
 import conexion.Conexion;
 import dao.RadioDao;
 import java.io.IOException;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -64,28 +63,69 @@ public class RadioServlet extends HttpServlet {
         
         respuesta = rad.insertar(rab);
         if (respuesta) {
-            msg = "";
+            msg = "Exito";
+        }else{
+            msg = "error";
         }
+        request.setAttribute("msg", msg);
+        rd = request.getRequestDispatcher("mostrar.jsp");
+        rd.forward(request, response);
     }
 
     protected void actualizar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        int id = Integer.parseInt(request.getParameter("id"));
+        String nombre = request.getParameter("nombre");
+        String frecuencia = request.getParameter("frecuencia");
+        int tipo_t = Integer.parseInt(request.getParameter("tipo_t"));
+        int programa = Integer.parseInt(request.getParameter("programa"));
+        
+        RadioBean rab = new RadioBean(id);
+        rab.setNombre_radio(nombre);
+        rab.setFrecuencia(frecuencia);
+        
+        Tipo_transmisionBean t = new Tipo_transmisionBean(tipo_t);
+        
+        rab.setTransmision(t);
+        ProgramasBean p = new ProgramasBean(programa);
+        rab.setPrograma(p);
+        
+        respuesta = rad.actualizar(rab);
+        if (respuesta) {
+            msg = "actualizado";
+        }else{
+            msg = "error";
+        }
+        request.setAttribute("msg", msg);
+        rd = request.getRequestDispatcher("mostrar.jsp");
+        rd.forward(request, response);
     }
 
     protected void eliminar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        int id = Integer.parseInt(request.getParameter("id"));
+        respuesta = rad.eliminar(id);
+        if (respuesta) {
+            msg = "Exito";
+        }else{
+            msg = "Error";
+        }
+        request.setAttribute("msg", msg);
+        rd = request.getRequestDispatcher("mostrar");
+        rd.forward(request, response);
     }
 
     protected void findAll(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        List<RadioBean> radios = rad.findAll();
+        request.setAttribute("radios", radios);
+        rd = request.getRequestDispatcher("mostrar");
+        rd.forward(request, response);
     }
 
     protected void findById(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
     }
 
     @Override
