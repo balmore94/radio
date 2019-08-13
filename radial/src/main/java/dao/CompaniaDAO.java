@@ -9,6 +9,7 @@ import conexion.Conexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import modelo.CompaniaBean;
 import modelo.EmisionesBean;
@@ -68,7 +69,7 @@ public class CompaniaDAO {
 
     public List<CompaniaBean> llenarCompania() throws Exception {
 
-        List<CompaniaBean> Lista = new ArrayList<>();
+        List<CompaniaBean> Lista = new LinkedList<CompaniaBean>();
         try {
             String query = "select * from compania";
             PreparedStatement stm = this.conn.conectar().prepareStatement(query);

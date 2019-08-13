@@ -4,9 +4,17 @@
         <servlet-name>GeneroServlet</servlet-name>
         <servlet-class>controlador.GeneroServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CompaniaServlet</servlet-name>
+        <servlet-class>controlador.CompaniaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GeneroServlet</servlet-name>
         <url-pattern>/genero</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CompaniaServlet</servlet-name>
+        <url-pattern>/compania</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
