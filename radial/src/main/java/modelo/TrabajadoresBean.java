@@ -50,13 +50,15 @@ public class TrabajadoresBean {
         this.dui = dui;
     }
 
-    public CargoBean getCargo() {
+    public CargosBean getCargo() {
         return cargo;
     }
 
-    public void setCargo(CargoBean cargo) {
+    public void setCargo(CargosBean cargo) {
         this.cargo = cargo;
     }
+
+    
 
     public ProgramasBean getPrograma_trabajdor() {
         return programa_trabajdor;

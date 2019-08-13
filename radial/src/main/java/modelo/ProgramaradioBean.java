@@ -12,13 +12,13 @@ package modelo;
 public class ProgramaradioBean {
     
     private int id_programaradio;
-    private ProgramaBean programa;
+    private ProgramasBean programa;
     private RadioBean radio;
     private String fecha;
     private String hora_inicio;
     private int duracion;
     private boolean repeticion;
-    private programaemisionesBean emisiones;
+    private EmisionesBean emisiones;
 
     public int getId_programaradio() {
         return id_programaradio;
@@ -28,13 +28,7 @@ public class ProgramaradioBean {
         this.id_programaradio = id_programaradio;
     }
 
-    public ProgramaBean getPrograma() {
-        return programa;
-    }
-
-    public void setPrograma(ProgramaBean programa) {
-        this.programa = programa;
-    }
+    
 
     public RadioBean getRadio() {
         return radio;
@@ -76,16 +70,24 @@ public class ProgramaradioBean {
         this.repeticion = repeticion;
     }
 
-    public programaemisionesBean getEmisiones() {
+    public ProgramaradioBean(int id_programaradio) {
+        this.id_programaradio = id_programaradio;
+    }
+
+    public ProgramasBean getPrograma() {
+        return programa;
+    }
+
+    public void setPrograma(ProgramasBean programa) {
+        this.programa = programa;
+    }
+
+    public EmisionesBean getEmisiones() {
         return emisiones;
     }
 
-    public void setEmisiones(programaemisionesBean emisiones) {
+    public void setEmisiones(EmisionesBean emisiones) {
         this.emisiones = emisiones;
-    }
-
-    public ProgramaradioBean(int id_programaradio) {
-        this.id_programaradio = id_programaradio;
     }
     
     
