@@ -1,5 +1,8 @@
 package modelo;
-
+/**
+ *
+ * @author maria.aguillonusam
+ */
 public class CargosBean {
 
 

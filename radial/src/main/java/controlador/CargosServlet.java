@@ -12,7 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.CargosBean;
-
+/**
+ *
+ * @author maria.aguillonusam
+ */
 public class CargosServlet extends HttpServlet {
     Conexion conn = new Conexion();
     CargosDao cd = new CargosDao(conn);
