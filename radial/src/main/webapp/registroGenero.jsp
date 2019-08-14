@@ -1,10 +1,9 @@
 <%-- 
-    Document   : registroProgramas
-    Created on : 08-13-2019, 04:42:30 PM
-    Author     : mario.rodriguezusam
+    Document   : generos
+    Created on : 08-14-2019, 09:26:44 AM
+    Author     : ronald.reyesusam
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,37 +65,26 @@
                                 <!-- Nav Start -->
                                 <div class="classynav">
                                     <ul>
-                                        <li><a href="index.html">Home</a></li>
-                                        <li><a href="albums-store.html">Albums</a></li>
-                                        <li><a href="#">Pages</a>
+                                        <li><a href="index.jsp">Inicio</a></li>
+                                        <li><a href="#">Radios</a>
                                             <ul class="dropdown">
-                                                <li><a href="index.html">Home</a></li>
-                                                <li><a href="albums-store.html">Albums</a></li>
-                                                <li><a href="event.html">Events</a></li>
-                                                <li><a href="blog.html">News</a></li>
-                                                <li><a href="contact.html">Contact</a></li>
-                                                <li><a href="elements.html">Elements</a></li>
-                                                <li><a href="login.html">Login</a></li>
-                                                <li><a href="#">Dropdown</a>
+                                                <li><a href="registroRadio.jsp">Registrar</a></li>
+                                                <li><a href="radio?action=findAll">Mostrar</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Programas</a>
+                                            <ul class="dropdown">
+                                                <li><a href="index.jsp">Registrar</a></li>
+                                                <li><a href="albums-store.html">Mostrar</a></li>
+                                                <li><a href="#">Generos</a>
                                                     <ul class="dropdown">
-                                                        <li><a href="#">Even Dropdown</a></li>
-                                                        <li><a href="#">Even Dropdown</a></li>
-                                                        <li><a href="#">Even Dropdown</a></li>
-                                                        <li><a href="#">Even Dropdown</a>
-                                                            <ul class="dropdown">
-                                                                <li><a href="#">Deeply Dropdown</a></li>
-                                                                <li><a href="#">Deeply Dropdown</a></li>
-                                                                <li><a href="#">Deeply Dropdown</a></li>
-                                                                <li><a href="#">Deeply Dropdown</a></li>
-                                                                <li><a href="#">Deeply Dropdown</a></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li><a href="#">Even Dropdown</a></li>
+                                                        <li><a href="registroGenero.jsp">Registrar</a></li>
+                                                        <li><a href="genero?action=findAll">Mostrar</a></li>
                                                     </ul>
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href="event .html">Events</a></li>
+                                        <li><a href="event.html">Events</a></li>
                                         <li><a href="blog.html">News</a></li>
                                         <li><a href="contact.html">Contact</a></li>
                                     </ul>
@@ -127,8 +115,8 @@
         <!-- ##### Breadcumb Area Start ##### -->
         <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb.jpg);">
             <div class="bradcumbContent">
-                <h2>Formaularios</h2>
-                <p></p>
+                <h2>Radios</h2>
+                <p>Registro de una radio</p>
 
             </div>
         </section>
@@ -138,24 +126,16 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-8">
-                        ${msj}
+                        ${msg}
                         <div class="login-content">
-                            <h3>Registro de programas</h3>
+                            <h3>Registrar Género</h3>
                             <!-- Login Form -->
                             <div class="login-form">
-                                <form action="programa?action=guardar" method="post">
+                                <form action="radio?action=insertar" method="post">
                                     <div class="form-group">
-                                        <label>Nombre del programa</label>
-                                        <input type="text" name="programa" class="form-control" placeholder="Ingrese nombre del programa">
+                                        <label>Nombre:</label>
+                                        <input class="form-control" name="nombre" placeholder="Ingrese el nombre del género">
                                         <!--<small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>-->
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Seleccione genero del programa</label>
-                                        <select name="genero" class="form-control">
-                                            <c:forEach items="${generos}" var="g">
-                                                <option value="<c:out value="${g.id_genero}"/>"><c:out value="${g.nombre_genero}"/></option>
-                                            </c:forEach> 
-                                        </select> 
                                     </div>
                                     <button type="submit" class="btn oneMusic-btn mt-30">Guardar</button>
                                 </form>
@@ -209,3 +189,15 @@
     </body>
 
 </html>
+<script>
+                                    $(function () {
+                                        var alert = $('div.alert[auto-close]');
+                                        alert.each(function () {
+                                            var that = $(this);
+                                            var time_period = that.attr('auto-close');
+                                            setTimeout(function () {
+                                                that.alert('close');
+                                            }, time_period);
+                                        });
+                                    });
+</script>

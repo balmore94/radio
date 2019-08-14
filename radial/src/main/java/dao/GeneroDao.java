@@ -12,7 +12,7 @@ import modelo.GeneroBean;
  * @author ronald.reyesusam
  */
 public class GeneroDao {
-    Conexion conn;
+    Conexion conn = new Conexion();
 
     public GeneroDao(Conexion conn) {
         this.conn = conn;
@@ -58,7 +58,7 @@ public class GeneroDao {
     }
     
     public List<GeneroBean>findAll(){
-        String sql = "SELETCT * FROM genero";
+        String sql = "SELECT * FROM genero";
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -66,6 +66,7 @@ public class GeneroDao {
             while(rs.next()){
                 GeneroBean geb = new GeneroBean(rs.getInt("id_genero"));
                 geb.setNombre_genero(rs.getString("nombre_genero"));
+                System.out.println(geb.getNombre_genero());
                 generos.add(geb);
             }
             return generos;
@@ -75,15 +76,15 @@ public class GeneroDao {
     }
     
     public List<GeneroBean>findById(int id){
-        String sql = "SELETCT * FROM genero WHERE id_genero =?";
+        String sql = "SELETC * FROM genero WHERE id_genero =?";
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             List<GeneroBean> genero = new LinkedList<>();
             while(rs.next()){
-                GeneroBean geb = new GeneroBean(rs.getInt("id_genero"));
-                geb.setNombre_genero(rs.getString("nombre_genero"));
+                GeneroBean geb = new GeneroBean(rs.getInt("id_compania"));
+                geb.setNombre_genero(rs.getString("nombre_compania"));
                 genero.add(geb);
             }
             return genero;

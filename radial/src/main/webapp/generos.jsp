@@ -1,7 +1,7 @@
 <%-- 
-    Document   : registroProgramas
-    Created on : 08-13-2019, 04:42:30 PM
-    Author     : mario.rodriguezusam
+    Document   : generos
+    Created on : 08-14-2019, 09:26:44 AM
+    Author     : ronald.reyesusam
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -66,37 +66,26 @@
                                 <!-- Nav Start -->
                                 <div class="classynav">
                                     <ul>
-                                        <li><a href="index.html">Home</a></li>
-                                        <li><a href="albums-store.html">Albums</a></li>
-                                        <li><a href="#">Pages</a>
+                                        <li><a href="index.jsp">Inicio</a></li>
+                                        <li><a href="#">Radios</a>
                                             <ul class="dropdown">
-                                                <li><a href="index.html">Home</a></li>
-                                                <li><a href="albums-store.html">Albums</a></li>
-                                                <li><a href="event.html">Events</a></li>
-                                                <li><a href="blog.html">News</a></li>
-                                                <li><a href="contact.html">Contact</a></li>
-                                                <li><a href="elements.html">Elements</a></li>
-                                                <li><a href="login.html">Login</a></li>
-                                                <li><a href="#">Dropdown</a>
+                                                <li><a href="registroRadio.jsp">Registrar</a></li>
+                                                <li><a href="radio?action=findAll">Mostrar</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Programas</a>
+                                            <ul class="dropdown">
+                                                <li><a href="index.jsp">Registrar</a></li>
+                                                <li><a href="albums-store.html">Mostrar</a></li>
+                                                <li><a href="#">Generos</a>
                                                     <ul class="dropdown">
-                                                        <li><a href="#">Even Dropdown</a></li>
-                                                        <li><a href="#">Even Dropdown</a></li>
-                                                        <li><a href="#">Even Dropdown</a></li>
-                                                        <li><a href="#">Even Dropdown</a>
-                                                            <ul class="dropdown">
-                                                                <li><a href="#">Deeply Dropdown</a></li>
-                                                                <li><a href="#">Deeply Dropdown</a></li>
-                                                                <li><a href="#">Deeply Dropdown</a></li>
-                                                                <li><a href="#">Deeply Dropdown</a></li>
-                                                                <li><a href="#">Deeply Dropdown</a></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li><a href="#">Even Dropdown</a></li>
+                                                        <li><a href="#">Registrar</a></li>
+                                                        <li><a href="#">Mostrar</a></li>
                                                     </ul>
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href="event .html">Events</a></li>
+                                        <li><a href="event.html">Events</a></li>
                                         <li><a href="blog.html">News</a></li>
                                         <li><a href="contact.html">Contact</a></li>
                                     </ul>
@@ -127,44 +116,68 @@
         <!-- ##### Breadcumb Area Start ##### -->
         <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb.jpg);">
             <div class="bradcumbContent">
-                <h2>Formaularios</h2>
-                <p></p>
+                <h2>Radios</h2>
+                <p>Listado de radios</p>
 
             </div>
         </section>
         <!-- ##### Breadcumb Area End ##### -->
 
-        <section class="section-padding-100">
+        <!-- ##### Contact Area Start ##### -->
+        <section class="contact-area section-padding-100-0">
             <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-12 col-lg-8">
-                        ${msj}
-                        <div class="login-content">
-                            <h3>Registro de programas</h3>
-                            <!-- Login Form -->
-                            <div class="login-form">
-                                <form action="programa?action=guardar" method="post">
-                                    <div class="form-group">
-                                        <label>Nombre del programa</label>
-                                        <input type="text" name="programa" class="form-control" placeholder="Ingrese nombre del programa">
-                                        <!--<small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>-->
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Seleccione genero del programa</label>
-                                        <select name="genero" class="form-control">
-                                            <c:forEach items="${generos}" var="g">
-                                                <option value="<c:out value="${g.id_genero}"/>"><c:out value="${g.nombre_genero}"/></option>
-                                            </c:forEach> 
-                                        </select> 
-                                    </div>
-                                    <button type="submit" class="btn oneMusic-btn mt-30">Guardar</button>
-                                </form>
-                            </div>
+                <div class="row">
+
+                    <div class="col-md-12 col-md-offset-3"> 
+                        ${msg}
+                        <div class="contact-content mb-100">
+
+                            <table id="example" class="table table-striped table-bordered" style="width:100%">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th hidden>id_radio</th>
+                                        <th>Género</th>
+                                        <th>Editar</th>
+                                        <th>Eliminar</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach items="${generos}" var="ver">
+                                        <tr>
+                                            <td hidden>${ver.id_genero}</td>
+                                            <td>${ver.nombre_genero}</td>
+                                            <td><a href="radio?action=findById&id=${ver.id_genero}"><button class="btn btn-info btn-sm">Editar</button></a></td>
+
+                                            <td><a href="radio?action=eliminar&id=${ver.id_genero}"><button class="btn btn-danger btn-sm">Eliminar</button></a></td>
+
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th hidden>id_radio</th>
+                                        <th>Radio</th>
+                                        <th>Frecuencia</th>
+                                        <th>Radiodifusión</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+
+
                         </div>
+
+
+
                     </div>
                 </div>
-            </div>
         </section>
+        <!-- ##### Contact Area End ##### -->
 
 
 
@@ -209,3 +222,15 @@
     </body>
 
 </html>
+<script>
+                                    $(function () {
+                                        var alert = $('div.alert[auto-close]');
+                                        alert.each(function () {
+                                            var that = $(this);
+                                            var time_period = that.attr('auto-close');
+                                            setTimeout(function () {
+                                                that.alert('close');
+                                            }, time_period);
+                                        });
+                                    });
+</script>
