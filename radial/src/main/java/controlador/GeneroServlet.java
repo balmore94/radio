@@ -31,8 +31,21 @@ public class GeneroServlet extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("action");
         
-        switch(action){
-            case "insertar": insertar(request, response);
+        switch (action) {
+            case "insertar":
+                insertar(request, response);
+                break;
+            case "actualizar":
+                actualizar(request, response);
+                break;
+            case "eliminar":
+                eliminar(request, response);
+                break;
+            case "findAll":
+                findAll(request, response);
+                break;
+            case "findById":
+                findById(request, response);
                 break;
         }
     }
@@ -46,12 +59,20 @@ public class GeneroServlet extends HttpServlet {
         
         resultado = ged.insertar(geb);
         if (resultado) {
-            msg ="insertado";
+            msg = "<div id=\"moo\" class=\"alert alert-success alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Éxito! Registro guardado...\n"
+                    + "</div>";
         }else{
-            msg = "error";
+            msg = "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\" auto-close=\"5000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Error! El registro no se pudo guardar...\n"
+                    + "</div>";
         }
         request.setAttribute("msg", msg);
-        rd = request.getRequestDispatcher("registro.jsp");
+        rd = request.getRequestDispatcher("registroGenero.jsp");
         rd.forward(request, response);
     }
     protected void actualizar(HttpServletRequest request, HttpServletResponse response)
@@ -65,13 +86,17 @@ public class GeneroServlet extends HttpServlet {
         resultado = ged.actualizar(geb);
         List<GeneroBean>generos = ged.findAll();
         if (resultado) {
-            msg ="actualizado";
+            msg = "<div id=\"moo\" class=\"alert alert-success alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Éxito! Registro Actualizado...\n"
+                    + "</div>";
         }else{
             msg = "error";
         }
         request.setAttribute("msg", msg);
         request.setAttribute("generos", generos);
-        rd = request.getRequestDispatcher("mostrar.jsp");
+        rd = request.getRequestDispatcher("generos.jsp");
         rd.forward(request, response);
     }
     protected void eliminar(HttpServletRequest request, HttpServletResponse response)
@@ -80,20 +105,29 @@ public class GeneroServlet extends HttpServlet {
         resultado = ged.eliminar(id);
         List<GeneroBean>generos = ged.findAll();
         if (resultado) {
-            msg = "Registro eliminado";
+            msg = "<div id=\"moo\" class=\"alert alert-success alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Éxito! Registro eliminado...\n"
+                    + "</div>";
         }else{
-            msg = "Error al eliminar";
+            msg = "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\" auto-close=\"5000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Error! El registro no se pudo eliminar...\n"
+                    + "</div>";
         }
         request.setAttribute("generos", generos);
         request.setAttribute("msg", msg);
-        rd = request.getRequestDispatcher("mostrar.jsp");
+        rd = request.getRequestDispatcher("generos.jsp");
         rd.forward(request, response);
     }
     protected void findAll(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<GeneroBean> generos = ged.findAll();
+        System.out.println(generos);
         request.setAttribute("generos", generos);
-        rd = request.getRequestDispatcher("mostrar.jsp");
+        rd = request.getRequestDispatcher("generos.jsp");
         rd.forward(request, response);
     }
     protected void findById(HttpServletRequest request, HttpServletResponse response)
