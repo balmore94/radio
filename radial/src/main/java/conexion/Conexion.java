@@ -9,7 +9,7 @@ public class Conexion {
     static String bd = "radio";
     static String usuer = "root";
     static String pass = "root";
-    static String url = "jdbc:mysql://localhost/" + bd + "?useSSL=false";
+    static String url = "jdbc:mysql://localhost/radio?useSSL=false";
     Connection conn = null;
 
     public Conexion() {

@@ -4,6 +4,7 @@
     Author     : maria.aguillonusam
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -30,14 +31,14 @@
                     <c:forEach items="${lista}" var="ver">
                         <tr>
                             <td>${ver.id_emisiones}</td>
-                            <td>${ver.emision}</td>                           
+                            <td>${ver.emision.nombre_compania}</td>                           
 
                             <td>
                                 <a href="emisiones?action=eliminar&id_emisiones=${ver.id_emisiones}"><button class="btn btn-danger">Eliminar</button></a>
                                 <a href="emisiones?action=consultarById&id_emisiones=${ver.id_emisiones}"><button class="btn btn-info">Modificar</button></a>                           
                             </td>                    
                         </tr>
-                    </c:forEach>                 
+                    </c:forEach>                
                 </tbody>
             </table>
             ${msg}
