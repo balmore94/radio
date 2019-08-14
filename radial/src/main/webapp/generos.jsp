@@ -116,8 +116,8 @@
         <!-- ##### Breadcumb Area Start ##### -->
         <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb.jpg);">
             <div class="bradcumbContent">
-                <h2>Radios</h2>
-                <p>Listado de radios</p>
+                <h2>Géneros</h2>
+                <p>Listado de géneros</p>
 
             </div>
         </section>
@@ -136,24 +136,20 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th hidden>id_radio</th>
-                                        <th>Radio</th>
-                                        <th>Frecuencia</th>
-                                        <th>Radiodifusión</th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
+                                        <th>Género</th>
+                                        <th>Editar</th>
+                                        <th>Eliminar</th>
+                                       
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach items="${radios}" var="ver">
+                                    <c:forEach items="${generos}" var="ver">
                                         <tr>
-                                            <td hidden>${ver.id_radio}</td>
-                                            <td>${ver.nombre_radio}</td>
-                                            <td>${ver.frecuencia}</td>
-                                            <td>${ver.transmision.nombre_transmision}</td>
-                                            <td><a href="radio?action=findById&id=${ver.id_radio}"><button class="btn btn-info btn-sm">Editar</button></a></td>
-                                            <td><a><button class="btn btn-light btn-sm">Programas</button></a></td>
-                                            <td><a href="radio?action=eliminar&id=${ver.id_radio}"><button class="btn btn-danger btn-sm">Eliminar</button></a></td>
+                                            <td hidden>${ver.id_genero}</td>
+                                            <td>${ver.nombre_genero}</td>
+                                            <td><a href="radio?action=findById&id=${ver.id_genero}"><button class="btn btn-info btn-sm">Editar</button></a></td>
+
+                                            <td><a href="radio?action=eliminar&id=${ver.id_genero}"><button class="btn btn-danger btn-sm">Eliminar</button></a></td>
 
                                         </tr>
                                     </c:forEach>
@@ -161,12 +157,11 @@
                                 <tfoot>
                                     <tr>
                                         <th hidden>id_radio</th>
-                                        <th>Radio</th>
-                                        <th>Frecuencia</th>
-                                        <th>Radiodifusión</th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
+                                        <th>Género</th>
+                                        <th>Editar</th>
+                                        <th>Eliminar</th>
+                                        
+                                       
                                     </tr>
                                 </tfoot>
                             </table>
@@ -183,7 +178,7 @@
 
 
 
-    
+        <!-- ##### Footer Area Start ##### -->
         <footer class="footer-area">
             <div class="container">
                 <div class="row d-flex flex-wrap align-items-center">
@@ -210,6 +205,7 @@
         </footer>
         <!-- ##### Footer Area Start ##### -->
 
+        <!-- ##### All Javascript Script ##### -->
         <!-- jQuery-2.2.4 js -->
         <script src="js/jquery/jquery-2.2.4.min.js"></script>
         <!-- Popper js -->

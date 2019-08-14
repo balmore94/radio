@@ -117,73 +117,56 @@
         <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb.jpg);">
             <div class="bradcumbContent">
                 <h2>Radios</h2>
-                <p>Listado de radios</p>
+                <p>Registro de una radio</p>
 
             </div>
         </section>
         <!-- ##### Breadcumb Area End ##### -->
 
-        <!-- ##### Contact Area Start ##### -->
-        <section class="contact-area section-padding-100-0">
+        <section class="section-padding-100">
             <div class="container">
-                <div class="row">
-
-                    <div class="col-md-12 col-md-offset-3"> 
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-8">
                         ${msg}
-                        <div class="contact-content mb-100">
-
-                            <table id="example" class="table table-striped table-bordered" style="width:100%">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th hidden>id_radio</th>
-                                        <th>Radio</th>
-                                        <th>Frecuencia</th>
-                                        <th>Radiodifusión</th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <c:forEach items="${radios}" var="ver">
-                                        <tr>
-                                            <td hidden>${ver.id_radio}</td>
-                                            <td>${ver.nombre_radio}</td>
-                                            <td>${ver.frecuencia}</td>
-                                            <td>${ver.transmision.nombre_transmision}</td>
-                                            <td><a href="radio?action=findById&id=${ver.id_radio}"><button class="btn btn-info btn-sm">Editar</button></a></td>
-                                            <td><a><button class="btn btn-light btn-sm">Programas</button></a></td>
-                                            <td><a href="radio?action=eliminar&id=${ver.id_radio}"><button class="btn btn-danger btn-sm">Eliminar</button></a></td>
-
-                                        </tr>
-                                    </c:forEach>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th hidden>id_radio</th>
-                                        <th>Radio</th>
-                                        <th>Frecuencia</th>
-                                        <th>Radiodifusión</th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-
-
+                        <div class="login-content">
+                            <h3>Registrar Radio</h3>
+                            <!-- Login Form -->
+                            <c:forEach items="${radio}" var="v">
+                            <div class="login-form">
+                                <form action="radio?action=actualizar" method="post">
+                                    <div class="form-group">
+                                        <label>Nombre:</label>
+                                        <input class="form-control" value="${v.nombre_radio}" name="nombre" placeholder="Ingrese el nombre de la radio">
+                                        <!--<small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>-->
+                                        <input type="hidden" name="id" value="${v.id_radio}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Frecuencia:</label>
+                                        <input class="form-control" value="${v.frecuencia}" name="frecuencia" placeholder="Ingrese la frecuencias">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Transmision:</label>
+                                        <select class="form-control" name="tipo_t">
+                                            <option  selected value="${v.transmision.id_transmision}">${v.transmision.nombre_transmision}</option>
+                                            <c:forEach items="${tipot}" var="r">
+                                                <option value="${r.id_transmision}">${r.nombre_transmision}</option>
+                                            
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn oneMusic-btn mt-30">Actualizar</button>
+                                </form>
+                                </c:forEach>
+                            </div>
                         </div>
-
-
-
                     </div>
                 </div>
+            </div>
         </section>
-        <!-- ##### Contact Area End ##### -->
 
 
 
-    
+        <!-- ##### Footer Area Start ##### -->
         <footer class="footer-area">
             <div class="container">
                 <div class="row d-flex flex-wrap align-items-center">
@@ -210,6 +193,7 @@
         </footer>
         <!-- ##### Footer Area Start ##### -->
 
+        <!-- ##### All Javascript Script ##### -->
         <!-- jQuery-2.2.4 js -->
         <script src="js/jquery/jquery-2.2.4.min.js"></script>
         <!-- Popper js -->

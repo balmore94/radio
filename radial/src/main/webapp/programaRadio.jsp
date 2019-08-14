@@ -4,6 +4,7 @@
     Author     : ronald.reyesusam
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -95,7 +96,7 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href="event .html">Events</a></li>
+                                        <li><a href="event.html">Events</a></li>
                                         <li><a href="blog.html">News</a></li>
                                         <li><a href="contact.html">Contact</a></li>
                                     </ul>
@@ -127,38 +128,51 @@
         <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb.jpg);">
             <div class="bradcumbContent">
                 <h2>Compañia</h2>
-                <p></p>
+                <p>Listado de compañia</p>
+
             </div>
         </section>
         <!-- ##### Breadcumb Area End ##### -->
 
-        <section class="section-padding-100">
+        <!-- ##### Contact Area Start ##### -->
+        <section class="contact-area section-padding-100-0">
             <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-12 col-lg-8">
-                          ${msg}
-                        <div class="login-content">
-                            <h3>Registro</h3>
-                            <!-- Login Form -->
-                            <div class="login-form">
-                                <form action="compani?action=Insertar" method="post">
-                                    <div class="form-group">
-                                        <label>Nombre</label>
-                                        <input class="form-control" placeholder="Ingrese Nombre" name="nombre_compania">
-                                        <!--<small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>-->
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Registro FC</label>
-                                        <input class="form-control" placeholder="Ingrese Registro FC" name="registrofc">
-                                    </div>
-                                    <button type="submit" class="btn oneMusic-btn mt-30">Ingresar</button>
-                                </form>
-                            </div>
+                <div class="row">
+
+                    <div class="col-md-12 col-md-offset-3"> 
+                        ${msg}
+                        <div class="contact-content mb-100">
+
+                            <table id="example" class="table table-striped table-bordered" style="width:100%">
+                                <thead class="thead-dark">
+                                    <tr>                                            
+                                        <th>Programa</th>
+                                        <th>Radio</th>
+                                        <th>Fecha</th>
+                                        <th>Hora_inicio</th>
+                                        <th>Duracion</th>
+                                        <th>Repeticion</th>
+                                        <th>Emisiones</th>                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach items="${lista}" var="l">
+                                        <tr>
+                                            <td hidden><c:out value="${l.id_programaradio}"/></td>
+                                            <td><c:out value="${l.programa.nombre_programa}"/></td>
+                                            <td><c:out value="${l.radio.nombre_radio}"/></td>
+                                            <td><a href="compani?action=Eliminar&id=<c:out value="${c.id_compania}"/>"><button class="btn btn-danger btn-sm">Eliminar</button></a></td>
+                                            <td><a href="compani?action=search&id=<c:out value="${c.id_compania}"/>"><button class="btn btn-warning btn-sm">Modificar</button></a></td>
+                                            
+                                        </tr>
+                                    </c:forEach>                                        
+                                </tbody>
+                            </table>                       
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
+        <!-- ##### Contact Area End ##### -->
 
 
 

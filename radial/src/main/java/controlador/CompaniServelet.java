@@ -27,6 +27,7 @@ public class CompaniServelet extends HttpServlet {
     Conexion conn = new Conexion();
     CompaniaDAO comp = new CompaniaDAO(conn);
     RequestDispatcher rd;
+    String msg;
 
     boolean aa;
 
@@ -34,22 +35,27 @@ public class CompaniServelet extends HttpServlet {
             throws ServletException, IOException {
 
         String action = request.getParameter("action");
-        
-        switch(action){
-            case "Insertar":Insertar(request, response);
-            break;
-            
-            case "update" :update(request, response);
-            break;
-            
-            case "Eliminar": Eliminar(request, response);
-            break;
-            
-            case "findAll": findAll(request, response);
-            break;
-            
-            case "search":search(request, response);
-            break;
+
+        switch (action) {
+            case "Insertar":
+                Insertar(request, response);
+                break;
+
+            case "update":
+                update(request, response);
+                break;
+
+            case "Eliminar":
+                Eliminar(request, response);
+                break;
+
+            case "findAll":
+                findAll(request, response);
+                break;
+
+            case "search":
+                search(request, response);
+                break;
         }
 
     }
@@ -62,25 +68,37 @@ public class CompaniServelet extends HttpServlet {
         CompaniaBean co = new CompaniaBean(0);
         co.setRegistrofc(registrofc);
         co.setNombre_compania(nombre_compania);
-
+        System.out.println("Intentando");
         try {
             comp.insertar(co);
             System.out.println("Insertado");
+             List<CompaniaBean> compania = comp.findAll();
+            request.setAttribute("compania", compania);
+            msg = "<div id=\"moo\" class=\"alert alert-success alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Éxito! Registro guardado...\n"
+                    + "</div>";
+            request.setAttribute("msg", msg);
+            
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException(e);
-
+            msg = "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\" auto-close=\"5000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Error! El registro no se pudo guardar...\n"
+                    + "</div>";
+            request.setAttribute("msg", msg);
         }
-        rd = request.getRequestDispatcher("registroCompania.jsp");
+        rd = request.getRequestDispatcher("compania.jsp");
         rd.forward(request, response);
 
     }
 
     protected void update(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
-        System.out.println("Espera... entrando");
-        int id = Integer.parseInt(request.getParameter("id_compania"));
+
+        int id = Integer.parseInt(request.getParameter("id"));
         String registrofc = request.getParameter("registrofc");
         String nombre_compania = request.getParameter("nombre_compania");
 
@@ -92,10 +110,21 @@ public class CompaniServelet extends HttpServlet {
             comp.actualizar(com);
             List<CompaniaBean> compania = comp.findAll();
             request.setAttribute("compania", compania);
-            System.out.println("Intentando");
+            System.out.println("update.. en curso");
+            msg = "<div id=\"moo\" class=\"alert alert-success alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Éxito! Registro actualizado...\n"
+                    + "</div>";
+            request.setAttribute("msg", msg);
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException(e);
+            msg = "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\" auto-close=\"5000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Error! El registro no se pudo actualizar...\n"
+                    + "</div>";
+            request.setAttribute("msg", msg);
         }
 
         rd = request.getRequestDispatcher("compania.jsp");
@@ -105,14 +134,25 @@ public class CompaniServelet extends HttpServlet {
     protected void Eliminar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int id = Integer.parseInt(request.getParameter("id_compania"));
+        int id = Integer.parseInt(request.getParameter("id"));
         try {
             comp.delete(id);
             List<CompaniaBean> compania = comp.findAll();
             request.setAttribute("compania", compania);
+            msg = "<div id=\"moo\" class=\"alert alert-success alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Éxito! Registro Eliminado...\n"
+                    + "</div>";
+            request.setAttribute("msg", msg);
         } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
+            e.printStackTrace();            
+            msg = "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\" auto-close=\"5000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Error! El registro no se pudo Eliminar...\n"
+                    + "</div>";
+            request.setAttribute("msg", msg);
         }
         rd = request.getRequestDispatcher("compania.jsp");
         rd.forward(request, response);
@@ -121,10 +161,10 @@ public class CompaniServelet extends HttpServlet {
 
     protected void findAll(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         try {
             List<CompaniaBean> compania = comp.findAll();
-            request.setAttribute("compania", compania);            
+            request.setAttribute("compania", compania);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -135,7 +175,7 @@ public class CompaniServelet extends HttpServlet {
 
     protected void search(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-          int id = Integer.parseInt(request.getParameter("id_compania"));
+        int id = Integer.parseInt(request.getParameter("id"));
         try {
             List<CompaniaBean> compania = comp.findbyid(id);
             request.setAttribute("compania", compania);
