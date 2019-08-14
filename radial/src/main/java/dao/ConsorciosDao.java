@@ -25,7 +25,7 @@ public class ConsorciosDao {
             ps.setInt(1, cob.getId_consorcio());
             ps.setInt(2, ra.getId_radio());
             ps.setInt(3, pr.getId_programa());
-            ps.setInt(4, com.getId_caompania());
+            ps.setInt(4, com.getId_compania());
             ps.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -42,7 +42,7 @@ public class ConsorciosDao {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
             ps.setInt(1, ra.getId_radio());
             ps.setInt(2, pr.getId_programa());
-            ps.setInt(3, com.getId_caompania());
+            ps.setInt(3, com.getId_compania());
             ps.setInt(4, cob.getId_consorcio());
             ps.executeUpdate();
             return true;

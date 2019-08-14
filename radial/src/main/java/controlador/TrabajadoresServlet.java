@@ -35,6 +35,7 @@ public class TrabajadoresServlet extends HttpServlet {
            
         String nombre_trabajador = request.getParameter("nombre_trabajador");
         String apellido_trabajador = request.getParameter("apellido_trabajador");
+        
     }
 
     protected void update(HttpServletRequest request, HttpServletResponse response)
