@@ -7,7 +7,10 @@ import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 import modelo.EmisionesBean;
-
+/**
+ *
+ * @author maria.aguillonusam
+ */
 public class EmisionesDao {
 
     Conexion conn = new Conexion();

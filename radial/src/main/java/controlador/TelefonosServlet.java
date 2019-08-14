@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.CompaniaBean;
 import modelo.TelefonosBean;
-
+/**
+ *
+ * @author maria.aguillonusam
+ */
 public class TelefonosServlet extends HttpServlet {
 
     Conexion conn = new Conexion();

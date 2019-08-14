@@ -1,5 +1,8 @@
 package modelo;
-
+/**
+ *
+ * @author maria.aguillonusam
+ */
 public class TelefonosBean {
 
     private int id_telefono;

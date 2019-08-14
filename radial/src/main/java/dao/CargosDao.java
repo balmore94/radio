@@ -6,7 +6,10 @@ import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 import modelo.CargosBean;
-
+/**
+ *
+ * @author maria.aguillonusam
+ */
 public class CargosDao {
     
     Conexion conn;

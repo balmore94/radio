@@ -7,7 +7,10 @@ import java.util.LinkedList;
 import java.util.List;
 import modelo.CompaniaBean;
 import modelo.TelefonosBean;
-
+/**
+ *
+ * @author maria.aguillonusam
+ */
 public class TelefonosDao {
 
     Conexion conn;
