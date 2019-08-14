@@ -151,7 +151,7 @@
                                         <label>campo 2</label>
                                         <input class="form-control" placeholder="Ingrese campo 2">
                                     </div>
-                                    <button type="submit" class="btn oneMusic-btn mt-30">Login</button>
+                                    <button type="submit" class="btn oneMusic-btn mt-30">Boton</button>
                                 </form>
                             </div>
                         </div>
