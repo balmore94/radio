@@ -100,6 +100,7 @@ public class TelefonosServlet extends HttpServlet {
         List<TelefonosBean> lista = td.consultarById(id_telefono);
         request.setAttribute("lista", lista);
         rd = request.getRequestDispatcher("/editarTelefonos.jsp");
+        rd.forward(request, response);
    }
 
     protected void eliminar(HttpServletRequest request, HttpServletResponse response)

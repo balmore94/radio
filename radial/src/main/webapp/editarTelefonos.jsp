@@ -4,6 +4,7 @@
     Author     : maria.aguillonusam
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,9 +16,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-         <div class="container">
+    <div class="container">
         <c:forEach items="${lista}" var="ver">
-            <form action="telefonos?action=actualizar" method="POST">
+                        <form action="telefonos?action=actualizar" method="POST">
                                 <div class="container col-md-6">
                     <hr>                   
                     <div class="form-group">
@@ -36,7 +37,7 @@
                     </div> 
                  
                     <button type="submit" class="btn btn-primary">Enviar</button> 
-                </c:forEach>
+        </c:forEach>
         </form>
         ${msg}
     </div>
