@@ -116,8 +116,8 @@
         <!-- ##### Breadcumb Area Start ##### -->
         <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb.jpg);">
             <div class="bradcumbContent">
-                <h2>Radios</h2>
-                <p>Listado de radios</p>
+                <h2>Géneros</h2>
+                <p>Listado de géneros</p>
 
             </div>
         </section>
@@ -139,9 +139,7 @@
                                         <th>Género</th>
                                         <th>Editar</th>
                                         <th>Eliminar</th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
+                                       
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -159,12 +157,11 @@
                                 <tfoot>
                                     <tr>
                                         <th hidden>id_radio</th>
-                                        <th>Radio</th>
-                                        <th>Frecuencia</th>
-                                        <th>Radiodifusión</th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
+                                        <th>Género</th>
+                                        <th>Editar</th>
+                                        <th>Eliminar</th>
+                                        
+                                       
                                     </tr>
                                 </tfoot>
                             </table>

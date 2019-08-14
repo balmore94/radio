@@ -115,8 +115,8 @@
         <!-- ##### Breadcumb Area Start ##### -->
         <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb.jpg);">
             <div class="bradcumbContent">
-                <h2>Radios</h2>
-                <p>Registro de una radio</p>
+                <h2>Géneros</h2>
+                <p>Registro de un género</p>
 
             </div>
         </section>
