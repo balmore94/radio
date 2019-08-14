@@ -72,12 +72,15 @@ public class CompaniServelet extends HttpServlet {
         try {
             comp.insertar(co);
             System.out.println("Insertado");
+             List<CompaniaBean> compania = comp.findAll();
+            request.setAttribute("compania", compania);
             msg = "<div id=\"moo\" class=\"alert alert-success alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
                     + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
                     + "  </button>\n"
                     + "  Éxito! Registro guardado...\n"
                     + "</div>";
             request.setAttribute("msg", msg);
+            
         } catch (Exception e) {
             e.printStackTrace();
             msg = "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\" auto-close=\"5000\">\n"
@@ -87,7 +90,7 @@ public class CompaniServelet extends HttpServlet {
                     + "</div>";
             request.setAttribute("msg", msg);
         }
-        rd = request.getRequestDispatcher("registroCompania.jsp");
+        rd = request.getRequestDispatcher("compania.jsp");
         rd.forward(request, response);
 
     }
