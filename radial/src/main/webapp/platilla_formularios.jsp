@@ -95,7 +95,7 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href="event.html">Events</a></li>
+                                        <li><a href="event .html">Events</a></li>
                                         <li><a href="blog.html">News</a></li>
                                         <li><a href="contact.html">Contact</a></li>
                                     </ul>
