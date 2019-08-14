@@ -20,19 +20,17 @@ public class ProgramasDAO {
         this.conn = conn;
     }
 
-    public List<ProgramasBean> MostrarProgramas() {
-        String query = "select p.id_programa, p.nombre_programa,g.nombre_genero from programas p inner join genero g on p.genero = g.id_genero;";
+    public List<ProgramasBean> mostrarProgramas(){
+        String query = "select p.id_programa, p.nombre_programa, g.id_genero, g.nombre_genero from programas p inner join genero g on p.genero = g.id_genero;";
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             List<ProgramasBean> lista = new LinkedList<>();
-            ProgramasBean p;
-            GeneroBean g;
             while (rs.next()) {
-                p = new ProgramasBean(rs.getInt("id_programa"));
+                ProgramasBean p = new ProgramasBean(rs.getInt("id_programa"));
                 p.setNombre_programa(rs.getString("nombre_programa"));
-                g = new GeneroBean(rs.getInt("id_genero"));
-                g.setNombre_genero(rs.getString("genero"));
+                GeneroBean g = new GeneroBean(rs.getInt("id_genero"));
+                g.setNombre_genero(rs.getString("nombre_genero"));
                 p.setGenero(g);
                 lista.add(p);
             }
@@ -89,9 +87,9 @@ public class ProgramasDAO {
             return null;
         }
     }
-    
-    public boolean actualizar(ProgramasBean pr){
-        String query ="update programas set nombre_programa=?, genero=? where id_programa = ?";
+
+    public boolean actualizar(ProgramasBean pr) {
+        String query = "update programas set nombre_programa=?, genero=? where id_programa = ?";
         try {
             PreparedStatement stm = conn.conectar().prepareStatement(query);
             stm.setString(1, pr.getNombre_programa());

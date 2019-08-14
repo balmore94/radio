@@ -64,8 +64,8 @@ public class GeneroDao {
             ResultSet rs = ps.executeQuery();
             List<GeneroBean> generos = new LinkedList<>();
             while(rs.next()){
-                GeneroBean geb = new GeneroBean(rs.getInt("id_compania"));
-                geb.setNombre_genero(rs.getString("nombre_compania"));
+                GeneroBean geb = new GeneroBean(rs.getInt("id_genero"));
+                geb.setNombre_genero(rs.getString("nombre_genero"));
                 generos.add(geb);
             }
             return generos;
@@ -82,8 +82,8 @@ public class GeneroDao {
             ResultSet rs = ps.executeQuery();
             List<GeneroBean> genero = new LinkedList<>();
             while(rs.next()){
-                GeneroBean geb = new GeneroBean(rs.getInt("id_compania"));
-                geb.setNombre_genero(rs.getString("nombre_compania"));
+                GeneroBean geb = new GeneroBean(rs.getInt("id_genero"));
+                geb.setNombre_genero(rs.getString("nombre_genero"));
                 genero.add(geb);
             }
             return genero;
