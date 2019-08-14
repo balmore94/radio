@@ -65,12 +65,13 @@ public class CompaniServelet extends HttpServlet {
 
         try {
             comp.insertar(co);
+            System.out.println("Insertado");
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
 
         }
-        rd = request.getRequestDispatcher("Regcompania.jsp");
+        rd = request.getRequestDispatcher("registroCompania.jsp");
         rd.forward(request, response);
 
     }
@@ -78,7 +79,7 @@ public class CompaniServelet extends HttpServlet {
     protected void update(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("id_compania"));
         String registrofc = request.getParameter("registrofc");
         String nombre_compania = request.getParameter("nombre_compania");
 
@@ -103,7 +104,7 @@ public class CompaniServelet extends HttpServlet {
     protected void Eliminar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("id_compania"));
         try {
             comp.delete(id);
             List<CompaniaBean> compania = comp.findAll();
@@ -119,10 +120,10 @@ public class CompaniServelet extends HttpServlet {
 
     protected void findAll(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         try {
-
             List<CompaniaBean> compania = comp.findAll();
-            request.setAttribute("compania", compania);
+            request.setAttribute("compania", compania);            
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -133,7 +134,7 @@ public class CompaniServelet extends HttpServlet {
 
     protected void search(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-          int id = Integer.parseInt(request.getParameter("id"));
+          int id = Integer.parseInt(request.getParameter("id_compania"));
         try {
             List<CompaniaBean> compania = comp.findbyid(id);
             request.setAttribute("compania", compania);

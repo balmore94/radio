@@ -20,7 +20,7 @@ import modelo.EmisionesBean;
  */
 public class CompaniaDAO {
 
-    Conexion conn;
+    Conexion conn = new Conexion();
 
     public CompaniaDAO(Conexion con) {
         this.conn = conn;
@@ -32,7 +32,7 @@ public class CompaniaDAO {
             PreparedStatement ps = conn.conectar().prepareStatement(query);
             ps.setString(1, cb.getRegistrofc());
             ps.setString(2, cb.getNombre_compania());
-            ps.setInt(3, cb.getId_caompania());
+            ps.setInt(3, cb.getId_compania());
             ps.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -57,9 +57,9 @@ public class CompaniaDAO {
         String query = "insert into compania values (?,?,?)";
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(query);
-            ps.setInt(1, comp.getId_caompania());
+            ps.setInt(1, comp.getId_compania());
             ps.setString(2, comp.getRegistrofc());
-            ps.setString(2, comp.getNombre_compania());
+            ps.setString(3, comp.getNombre_compania());
             ps.executeUpdate();
             
             return true;
@@ -88,7 +88,7 @@ public class CompaniaDAO {
     }
     
     public List<CompaniaBean> findbyid(int id) throws Exception{
-    String query="Select * from compania WHERE id_genero=?";
+    String query="Select * from compania WHERE id_compania=?";
         try {
             PreparedStatement stm = this.conn.conectar().prepareStatement(query);
             stm.setInt(1, id);

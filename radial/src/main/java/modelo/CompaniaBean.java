@@ -11,16 +11,16 @@ package modelo;
  */
 public class CompaniaBean {
     
-    private int id_caompania;
+    private int id_compania;
     private String registrofc;
     private String nombre_compania;
 
-    public int getId_caompania() {
-        return id_caompania;
+    public int getId_compania() {
+        return id_compania;
     }
 
-    public void setId_caompania(int id_caompania) {
-        this.id_caompania = id_caompania;
+    public void setId_compania(int id_compania) {
+        this.id_compania = id_compania;
     }
 
     public String getRegistrofc() {
@@ -39,9 +39,10 @@ public class CompaniaBean {
         this.nombre_compania = nombre_compania;
     }
 
-    public CompaniaBean(int id_caompania) {
-        this.id_caompania = id_caompania;
+    public CompaniaBean(int id_compania) {
+        this.id_compania = id_compania;
     }
-      
+
+
     
 }

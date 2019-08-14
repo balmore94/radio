@@ -23,7 +23,7 @@ public class TelefonosDao {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
             ps.setInt(1, tb.getId_telefono());
             ps.setString(2, tb.getTelefono1());
-            ps.setInt(3, cb.getId_caompania());
+            ps.setInt(3, cb.getId_compania());
             ps.executeUpdate();
             
             return true;
@@ -38,7 +38,7 @@ public class TelefonosDao {
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
             ps.setString(1, tb.getTelefono1());
-            ps.setInt(2, cb.getId_caompania());
+            ps.setInt(2, cb.getId_compania());
             ps.setInt(3, tb.getId_telefono());
             ps.executeUpdate();
             
