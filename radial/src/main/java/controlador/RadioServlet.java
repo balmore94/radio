@@ -125,7 +125,11 @@ public class RadioServlet extends HttpServlet {
 
     protected void findById(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        int id = Integer.parseInt(request.getParameter("id"));
+        List<RadioBean> radio = rad.findById(id);
+        request.setAttribute("radio", radio);
+        rd = request.getRequestDispatcher("editar");
+        rd.forward(request, response);
     }
 
     @Override

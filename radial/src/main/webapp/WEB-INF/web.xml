@@ -28,6 +28,10 @@
         <servlet-name>TrabajadoresServlet</servlet-name>
         <servlet-class>controlador.TrabajadoresServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ConsorciosServlet</servlet-name>
+        <servlet-class>controlador.ConsorciosServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>EmisionesServlet</servlet-name>
         <url-pattern>/emisiones</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>TrabajadoresServlet</servlet-name>
         <url-pattern>/trabajadores</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConsorciosServlet</servlet-name>
+        <url-pattern>/consorcios</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -2,6 +2,9 @@ package dao;
 
 import conexion.Conexion;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.LinkedList;
+import java.util.List;
 import modelo.CompaniaBean;
 import modelo.ConsorciosBean;
 import modelo.ProgramasBean;
@@ -60,6 +63,52 @@ public class ConsorciosDao {
             return true;
         } catch (Exception e) {
             return false;
+        }
+    }
+    
+    public List<ConsorciosBean>findAll(){
+        String sql = "SELECT * FROM consorcios";
+        try {
+            PreparedStatement ps = conn.conectar().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            List<ConsorciosBean> consorcios = new LinkedList<>();
+            while(rs.next()){
+                ConsorciosBean cs = new ConsorciosBean(rs.getInt("id_consorcio"));
+                RadioBean ra = new RadioBean(rs.getInt("radio_consorcio"));
+                cs.setRadio_consorcio(ra);
+                ProgramasBean pr = new ProgramasBean(rs.getInt("programa_consorcio"));
+                cs.setPrograma_consorcio(pr);
+                CompaniaBean co = new CompaniaBean(rs.getInt("compania_consorcio"));
+                cs.setCompania_consorcio(co);
+                consorcios.add(cs);
+            }
+            return consorcios;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
+    
+    public List<ConsorciosBean>findById(int id){
+        String sql = "SELECT * FROM consorcios WHERE id_consorcio=?";
+        try {
+            PreparedStatement ps = conn.conectar().prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            List<ConsorciosBean> consorcios = new LinkedList<>();
+            while(rs.next()){
+                ConsorciosBean cs = new ConsorciosBean(rs.getInt("id_consorcio"));
+                RadioBean ra = new RadioBean(rs.getInt("radio_consorcio"));
+                cs.setRadio_consorcio(ra);
+                ProgramasBean pr = new ProgramasBean(rs.getInt("programa_consorcio"));
+                cs.setPrograma_consorcio(pr);
+                CompaniaBean co = new CompaniaBean(rs.getInt("compania_consorcio"));
+                cs.setCompania_consorcio(co);
+                consorcios.add(cs);
+            }
+            return consorcios;
+        } catch (Exception e) {
+            return null;
         }
     }
 }
