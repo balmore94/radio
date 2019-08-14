@@ -58,7 +58,7 @@ public class GeneroDao {
     }
     
     public List<GeneroBean>findAll(){
-        String sql = "SELETCT * FROM genero";
+        String sql = "SELECT * FROM genero";
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -82,8 +82,8 @@ public class GeneroDao {
             ResultSet rs = ps.executeQuery();
             List<GeneroBean> genero = new LinkedList<>();
             while(rs.next()){
-                GeneroBean geb = new GeneroBean(rs.getInt("id_genero"));
-                geb.setNombre_genero(rs.getString("nombre_genero"));
+                GeneroBean geb = new GeneroBean(rs.getInt("id_compania"));
+                geb.setNombre_genero(rs.getString("nombre_compania"));
                 genero.add(geb);
             }
             return genero;
