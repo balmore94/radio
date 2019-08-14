@@ -14,23 +14,23 @@ import modelo.Tipo_transmisionBean;
  * @author ronald.reyesusam
  */
 public class RadioDao {
-    Conexion conn;
+    Conexion conn = new Conexion();
 
     public RadioDao(Conexion conn) {
         this.conn = conn;
     }
     
     public boolean insertar(RadioBean rab){
-        String sql = "INSERT INTO radio VALUE(?,?,?,?,?)";
+        String sql = "INSERT INTO radio VALUE(?,?,?,?,null)";
         Tipo_transmisionBean t = rab.getTransmision();
-        ProgramasBean p = rab.getPrograma();
+        //ProgramasBean p = rab.getPrograma();
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
             ps.setInt(1, rab.getId_radio());
             ps.setString(2, rab.getNombre_radio());
             ps.setString(3, rab.getFrecuencia());
             ps.setInt(4, t.getId_transmision());
-            ps.setInt(5, p.getId_programa());
+            //ps.setInt(5, p.getId_programa());
             ps.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -39,17 +39,15 @@ public class RadioDao {
     }
     
     public boolean actualizar(RadioBean rab){
-        String sql = "UPDATE radio SET nombre_radio=?, frecuencia=?, transmision=?, programa=? WHERE id_radio =?";
+        String sql = "UPDATE radio SET nombre_radio=?, frecuencia=?, transmision=? WHERE id_radio =?";
         Tipo_transmisionBean t = rab.getTransmision();
-        ProgramasBean p = rab.getPrograma();
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
             
             ps.setString(1, rab.getNombre_radio());
             ps.setString(2, rab.getFrecuencia());
             ps.setInt(3, t.getId_transmision());
-            ps.setInt(4, p.getId_programa());
-            ps.setInt(5, rab.getId_radio());
+            ps.setInt(4, rab.getId_radio());
             ps.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -70,7 +68,7 @@ public class RadioDao {
     }
     
     public List<RadioBean>findAll(){
-        String sql = "select radio.*, tipo_transmision.*, programas.* from radio, tipo_transmision, programas where radio.transmision = tipo_transmision.id_transmision and radio.programa = programas.id_programa";
+        String sql = "select radio.*, tipo_transmision.* from radio, tipo_transmision where radio.transmision = tipo_transmision.id_transmision";
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -80,11 +78,8 @@ public class RadioDao {
                 rad.setNombre_radio(rs.getString("nombre_radio"));
                 rad.setFrecuencia(rs.getString("frecuencia"));
                 Tipo_transmisionBean tpd = new Tipo_transmisionBean(rs.getInt("transmision"));
-                tpd.setNombre_transmision(rs.getString("nombre_"));
+                tpd.setNombre_transmision(rs.getString("nombre_transmision"));
                 rad.setTransmision(tpd);
-                ProgramasBean prb = new ProgramasBean(rs.getInt("programa"));
-                prb.setNombre_programa(rs.getString("nombre_programa"));
-                rad.setPrograma(prb);
                 radios.add(rad);
             }
             return radios;
@@ -94,7 +89,7 @@ public class RadioDao {
     }
     
     public List<RadioBean>findById(int id){
-        String sql = "select radio.*, tipo_transmision.*, programas.* from radio, tipo_transmision, programas where radio.transmision = tipo_transmision.id_transmision and radio.programa = programas.id_programa Where radio.id_radio=?";
+        String sql = "select radio.*, tipo_transmision.* from radio, tipo_transmision where radio.transmision = tipo_transmision.id_transmision and radio.id_radio = ?";
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
             ps.setInt(1, id);
@@ -105,11 +100,8 @@ public class RadioDao {
                 rad.setNombre_radio(rs.getString("nombre_radio"));
                 rad.setFrecuencia(rs.getString("frecuencia"));
                 Tipo_transmisionBean tpd = new Tipo_transmisionBean(rs.getInt("transmision"));
-                tpd.setNombre_transmision(rs.getString("nombre_"));
+                tpd.setNombre_transmision(rs.getString("nombre_transmision"));
                 rad.setTransmision(tpd);
-                ProgramasBean prb = new ProgramasBean(rs.getInt("programa"));
-                prb.setNombre_programa(rs.getString("nombre_programa"));
-                rad.setPrograma(prb);
                 radio.add(rad);
             }
             return radio;

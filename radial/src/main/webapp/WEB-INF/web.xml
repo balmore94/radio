@@ -32,6 +32,10 @@
         <servlet-name>ConsorciosServlet</servlet-name>
         <servlet-class>controlador.ConsorciosServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RadioServlet</servlet-name>
+        <servlet-class>controlador.RadioServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>EmisionesServlet</servlet-name>
         <url-pattern>/emisiones</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>ConsorciosServlet</servlet-name>
         <url-pattern>/consorcios</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RadioServlet</servlet-name>
+        <url-pattern>/radio</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
