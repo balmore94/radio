@@ -78,7 +78,8 @@ public class CompaniServelet extends HttpServlet {
 
     protected void update(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+      
+        System.out.println("Espera... entrando");
         int id = Integer.parseInt(request.getParameter("id_compania"));
         String registrofc = request.getParameter("registrofc");
         String nombre_compania = request.getParameter("nombre_compania");
@@ -91,7 +92,7 @@ public class CompaniServelet extends HttpServlet {
             comp.actualizar(com);
             List<CompaniaBean> compania = comp.findAll();
             request.setAttribute("compania", compania);
-
+            System.out.println("Intentando");
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -142,7 +143,7 @@ public class CompaniServelet extends HttpServlet {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-        rd = request.getRequestDispatcher("editcompania.jsp");
+        rd = request.getRequestDispatcher("editarCompania.jsp");
         rd.forward(request, response);
     }
 
