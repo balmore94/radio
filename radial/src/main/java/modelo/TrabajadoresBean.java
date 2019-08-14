@@ -58,19 +58,17 @@ public class TrabajadoresBean {
         this.cargo = cargo;
     }
 
-    
-
-    public ProgramasBean getPrograma_trabajdor() {
+    public ProgramasBean getPrograma_trabajador() {
         return programa_trabajador;
     }
 
-    public void setPrograma_trabajdor(ProgramasBean programa_trabajdor) {
-        this.programa_trabajador = programa_trabajdor;
+    public void setPrograma_trabajador(ProgramasBean programa_trabajador) {
+        this.programa_trabajador = programa_trabajador;
     }
 
     public TrabajadoresBean(int id_trabajadores) {
         this.id_trabajadores = id_trabajadores;
     }
-    
+
     
 }

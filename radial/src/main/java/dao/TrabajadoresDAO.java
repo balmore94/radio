@@ -43,7 +43,7 @@ public class TrabajadoresDAO {
         String query = "update trabajadores set nombre_trabajador=?,apellido_trabjador=?,dui=?,cargo=?,programa_trabajador=? where id_trabajadores=?;";
 
         CargosBean c = tr.getCargo();
-        ProgramasBean p = tr.getPrograma_trabajdor();
+        ProgramasBean p = tr.getPrograma_trabajador();
 
         try {
             PreparedStatement stm = this.conn.conectar().prepareStatement(query);
@@ -63,7 +63,7 @@ public class TrabajadoresDAO {
         String query = "Insert into trabajadores values(?,?,?,?,?,?)";
 
         CargosBean c = tra.getCargo();
-        ProgramasBean p = tra.getPrograma_trabajdor();
+        ProgramasBean p = tra.getPrograma_trabajador();
         try {
             PreparedStatement stm = this.conn.conectar().prepareStatement(query);
             stm.setInt(1, tra.getId_trabajadores());
@@ -96,7 +96,7 @@ public class TrabajadoresDAO {
                 tra.setCargo(car);
                 ProgramasBean pro = new ProgramasBean(rt.getInt("programa_trabajador"));
                 pro.setNombre_programa(rt.getString("nombre_programa"));
-                tra.setPrograma_trabajdor(pro);
+                tra.setPrograma_trabajador(pro);
                 Lista.add(tra);                
             }
             return Lista;
@@ -122,7 +122,7 @@ public class TrabajadoresDAO {
                 tra.setCargo(car);
                 ProgramasBean pro = new ProgramasBean(rt.getInt("programa_trabajador"));
                 pro.setNombre_programa(rt.getString("nombre_programa"));
-                tra.setPrograma_trabajdor(pro);
+                tra.setPrograma_trabajador(pro);
                 trabajadores.add(tra);   
              }
              return trabajadores;
