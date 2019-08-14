@@ -16,7 +16,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-         <div class="container col-md-8">
+         <div class="container col-md-6">
         <div >
             <h2>EMISIONES</h2>        
             <table class="table">
@@ -31,7 +31,7 @@
                     <c:forEach items="${lista}" var="ver">
                         <tr>
                             <td>${ver.id_emisiones}</td>
-                            <td>${ver.emision.nombre_compania}</td>                           
+                            <td>${ver.emision}</td>                           
 
                             <td>
                                 <a href="emisiones?action=eliminar&id_emisiones=${ver.id_emisiones}"><button class="btn btn-danger">Eliminar</button></a>

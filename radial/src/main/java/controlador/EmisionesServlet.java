@@ -93,8 +93,9 @@ public class EmisionesServlet extends HttpServlet {
 
     protected void consultarById(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id_emision = Integer.parseInt(request.getParameter("id_emision"));
-        List<EmisionesBean> lista = ed.consultarById(id_emision);
+        int id_emisiones = Integer.parseInt(request.getParameter("id_emisiones"));
+        List<EmisionesBean> lista = ed.consultarById(id_emisiones);
+        System.out.println(id_emisiones);
         request.setAttribute("lista", lista);
         rd = request.getRequestDispatcher("/editarEmisiones.jsp");
         rd.forward(request, response);
@@ -102,8 +103,8 @@ public class EmisionesServlet extends HttpServlet {
 
     protected void eliminar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id_emision = Integer.parseInt(request.getParameter("id_emision"));
-        respuesta = ed.eliminar(id_emision);
+        int id_emisiones = Integer.parseInt(request.getParameter("id_emisiones"));
+        respuesta = ed.eliminar(id_emisiones);
         List<EmisionesBean> lista = ed.consultarAll();
         if (respuesta) {
             msg = "Eliminado";

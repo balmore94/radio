@@ -4,6 +4,7 @@
     Author     : maria.aguillonusam
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,18 +17,19 @@
     </head>
     <body>
         <div class="container">
-        <c:forEach items="${lista}" var="ver">
+        
             <form action="emisiones?action=actualizar" method="POST">
-                                <div class="container col-md-6">
-                    <hr>                   
+                <c:forEach items="${lista}" var="ver">
+                   <div class="container col-md-4">
+                                    
                     <div class="form-group">
-                        <label>Id Emisiones</label>
-                        <input class="form-control" name="id_emisiones" value="${ver.id_emisiones}">
+               
+                        <input  type="hidden" class="form-control" name="id_emisiones" value="<c:out value="${ver.id_emisiones}"/>">
                     </div> 
 
                     <div class="form-group">
                         <label>Emision</label>
-                        <input class="form-control" name="emision" value="${ver.emision}">
+                        <input class="form-control" name="emision" value="<c:out value="${ver.emision}"/>">
                     </div> 
                  
                     <button type="submit" class="btn btn-primary">Enviar</button> 

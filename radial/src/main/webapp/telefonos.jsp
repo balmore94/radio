@@ -4,6 +4,7 @@
     Author     : maria.aguillonusam
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,7 +18,7 @@
     <body>
         <div class="container col-md-8">
         <div >
-            <h2>AEROPUERTO</h2>        
+            <h2>TELEFONOS</h2>        
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
@@ -29,17 +30,17 @@
                 </thead>
                 <tbody>
                     <c:forEach items="${lista}" var="ver">
-                        <tr>
+                         <tr>
                             <td>${ver.id_telefono}</td>
                             <td>${ver.telefono1}</td>
-                            <td>${ver.compania}</td> 
+                            <td>${ver.compania.nombre_compania}</td> 
 
                             <td>
                                 <a href="telefonos?action=eliminar&id_telefono=${ver.id_telefono}"><button class="btn btn-danger">Eliminar</button></a>
                                 <a href="telefonos?action=consultarById&id_telefono=${ver.id_telefono}"><button class="btn btn-info">Modificar</button></a>                           
                             </td>                    
                         </tr>
-                    </c:forEach>                 
+                    </c:forEach>                
                 </tbody>
             </table>
             ${msg}
