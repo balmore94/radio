@@ -79,17 +79,17 @@
                                                 <li><a href="#">Generos</a>
                                                     <ul class="dropdown">
                                                         <li><a href="registroGenero.jsp">Registrar</a></li>
-                                                        <li><a href="">Mostrar</a></li>
+                                                        <li><a href="genero?action=findAll">Mostrar</a></li>
                                                     </ul>
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href="#">Compañia</a>
+                                        <li><a href="compania.jsp">Compañia</a>
                                             <ul class="dropdown">
-                                                <li><a href="">Registrar</a></li>
-                                                <li><a href="compani?action=findAll">Mostrar</a></li>
+                                                <li><a href="registroCompania.jsp">Registrar</a></li>
+                                                <li><a href="compani?action=findAll">Compañias</a></li>
                                             </ul>
-                                        </li>                                        
+                                        </li>
                                         <li><a href="blog.html">News</a></li>
                                         <li><a href="contact.html">Contact</a></li>
                                     </ul>
@@ -149,22 +149,6 @@
                                 <div class="hero-slides-content text-center">
                                     <h6 data-animation="fadeInUp" data-delay="100ms">Latest album</h6>
                                     <h2 data-animation="fadeInUp" data-delay="300ms">Colorlib Music <span>Colorlib Music</span></h2>
-                                    <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="single-hero-slide d-flex align-items-center justify-content-center">
-                    <!-- Slide Img -->
-                    <div class="slide-img bg-img" style="background-image: url(img/bg-img/bg-5.png);"></div>
-                    <!-- Slide Content -->
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="hero-slides-content text-center">
-                                    <h6 data-animation="fadeInUp" data-delay="100ms">Latest album</h6>
-                                    <h2 data-animation="fadeInUp" data-delay="300ms">Hello KITY Music <span>Colorlib Music</span></h2>
                                     <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
                                 </div>
                             </div>
