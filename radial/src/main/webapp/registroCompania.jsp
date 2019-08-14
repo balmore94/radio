@@ -128,7 +128,6 @@
             <div class="bradcumbContent">
                 <h2>Compañia</h2>
                 <p></p>
-
             </div>
         </section>
         <!-- ##### Breadcumb Area End ##### -->
@@ -145,12 +144,12 @@
                                 <form action="compani?action=Insertar" method="post">
                                     <div class="form-group">
                                         <label>Nombre</label>
-                                        <input class="form-control" placeholder="Ingrese campo 1" name="nombre_compania">
+                                        <input class="form-control" placeholder="Ingrese Nombre" name="nombre_compania">
                                         <!--<small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>-->
                                     </div>
                                     <div class="form-group">
                                         <label>Registro FC</label>
-                                        <input class="form-control" placeholder="Ingrese campo 2" name="registrofc">
+                                        <input class="form-control" placeholder="Ingrese Registro FC" name="registrofc">
                                     </div>
                                     <button type="submit" class="btn oneMusic-btn mt-30">Ingresar</button>
                                 </form>
