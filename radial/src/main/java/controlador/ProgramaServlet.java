@@ -27,6 +27,7 @@ public class ProgramaServlet extends HttpServlet {
     RequestDispatcher rd;
     boolean res;
     String msj;
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -34,8 +35,20 @@ public class ProgramaServlet extends HttpServlet {
             case "mostrar":
                 mostrar(request, response);
                 break;
+            case "show":
+                showBeforeSave(request, response);
+                break;
             case "guardar":
                 guardar(request, response);
+                break;
+            case "eliminar":
+                eliminar(request, response);
+                break;
+            case "getById":
+                getById(request, response);
+                break;
+            case "actualizar":
+                actualizar(request, response);
                 break;
         }
     }
@@ -46,44 +59,79 @@ public class ProgramaServlet extends HttpServlet {
         request.setAttribute("prom", prom);
         rd = request.getRequestDispatcher("/mostrarProgramas.jsp");
         rd.forward(request, response);
-    } 
+    }
+
+    protected void showBeforeSave(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        List<GeneroBean> generos = gen.findAll();
+        request.setAttribute("generos", generos);
+        rd = request.getRequestDispatcher("/registroProgramas.jsp");
+        rd.forward(request, response);
+    }
 
     protected void guardar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String programa = request.getParameter("programa");
         int genero = Integer.parseInt(request.getParameter("genero"));
-        
-        
+
         ProgramasBean prob = new ProgramasBean(0);
         prob.setNombre_programa(programa);
+        List<GeneroBean> generos = gen.findAll();
+        List<ProgramasBean> prom = pro.mostrarProgramas();
+        request.setAttribute("generos", generos);
         GeneroBean geb = new GeneroBean(genero);
         prob.setGenero(geb);
-        List<GeneroBean> lista = gen.findAll();
+
         res = pro.guardar(prob);
-        if(res){
-            msj = "Exito";
+        if (res) {
+            msj = "<div id=\"moo\" class=\"alert alert-success alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Éxito! Registro guardado...\n"
+                    + "</div>";
         } else {
-            msj = "Error";
+            msj = "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\" auto-close=\"5000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Error! El registro no se pudo guardar...\n"
+                    + "</div>";
         }
-        request.setAttribute("lista", lista);
+
         request.setAttribute("msj", msj);
         rd = request.getRequestDispatcher("/registroProgramas.jsp");
         rd.forward(request, response);
-        } 
-
-    
-    
-    protected void actualizar(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
     }
 
     protected void eliminar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        res = pro.elimiar(id);
+        List<ProgramasBean> prom = pro.mostrarProgramas();
+        if (res) {
+            msj = "<div id=\"moo\" class=\"alert alert-success alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Éxito! Registro eliminado...\n"
+                    + "</div>";
+        } else {
+            msj = "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\" auto-close=\"5000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Error! El registro no se pudo eliminar...\n"
+                    + "</div>";
+        }
+        request.setAttribute("msj", msj);
+        request.setAttribute("prom", prom);
+        rd = request.getRequestDispatcher("mostrarProgramas.jsp");
+        rd.forward(request, response);
+    }
+
+    protected void getById(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
     }
 
-    protected void getbyid(HttpServletRequest request, HttpServletResponse response)
+    protected void actualizar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
     }

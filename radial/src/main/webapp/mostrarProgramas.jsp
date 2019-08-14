@@ -149,6 +149,8 @@
                                         <th>Codigo</th>
                                         <th>Nombre Programa</th>
                                         <th>Genero Programa</th>
+                                        <th></th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -157,6 +159,12 @@
                                             <td><c:out value="${p.id_programa}"/></td>
                                             <td>${p.nombre_programa}</td>
                                             <td>${p.genero.nombre_genero}</td>
+                                            <td>
+                                                <a href="programa?action=eliminar&id=${p.id_programa}"><button class="btn btn-danger btn-sm">Eliminar</button></a>
+                                            </td>
+                                            <td>
+                                                <a href="programa?action=getById&id=${p.id_programa}"><button class="btn btn-info btn-sm">Modificar</button></a>
+                                            </td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
@@ -167,7 +175,7 @@
                 <div class="row">
                     <div class="col-md-3"></div>
                     <div class="col-md-4">
-                        <a href="programa?action=guardar" class="btn btn-block btn-outline-dark">Nuevo</a>
+                        <a href="programa?action=show" class="btn btn-block btn-outline-dark">Nuevo</a>
                     </div>
                 </div>
                 <br>

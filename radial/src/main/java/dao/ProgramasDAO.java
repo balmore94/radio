@@ -21,7 +21,7 @@ public class ProgramasDAO {
     }
 
     public List<ProgramasBean> mostrarProgramas(){
-        String query = "select p.id_programa, p.nombre_programa, g.id_genero, g.nombre_genero from programas p inner join genero g on p.genero = g.id_genero;";
+        String query = "select p.id_programa, p.nombre_programa, g.id_genero, g.nombre_genero from programas p inner join genero g on p.genero = g.id_genero order by id_programa";
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
@@ -41,12 +41,12 @@ public class ProgramasDAO {
     }
 
     public boolean guardar(ProgramasBean po) {
-
         String query = "insert into programas (nombre_programa,genero) values (?,?);";
+        GeneroBean ge = po.getGenero();
         try {
             PreparedStatement stm = conn.conectar().prepareStatement(query);
             stm.setString(1, po.getNombre_programa());
-            stm.setInt(2, po.getGenero().getId_genero());
+            stm.setInt(2, ge.getId_genero());
             stm.executeUpdate();
             return true;
         } catch (Exception e) {

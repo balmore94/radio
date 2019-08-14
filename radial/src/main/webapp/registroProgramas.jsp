@@ -138,11 +138,12 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-8">
+                        ${msj}
                         <div class="login-content">
-                            <h3>Registro de</h3>
+                            <h3>Registro de programas</h3>
                             <!-- Login Form -->
                             <div class="login-form">
-                                <form action="#" method="post">
+                                <form action="programa?action=guardar" method="post">
                                     <div class="form-group">
                                         <label>Nombre del programa</label>
                                         <input type="text" name="programa" class="form-control" placeholder="Ingrese nombre del programa">
@@ -151,12 +152,12 @@
                                     <div class="form-group">
                                         <label>Seleccione genero del programa</label>
                                         <select name="genero" class="form-control">
-                                            <c:forEach items="${lista}" var="g">
-                                                <option value="${g.id_genero}">${g.nombre_genero}</option>
+                                            <c:forEach items="${generos}" var="g">
+                                                <option value="<c:out value="${g.id_genero}"/>"><c:out value="${g.nombre_genero}"/></option>
                                             </c:forEach> 
                                         </select> 
                                     </div>
-                                    <button type="submit" class="btn oneMusic-btn mt-30">Boton</button>
+                                    <button type="submit" class="btn oneMusic-btn mt-30">Guardar</button>
                                 </form>
                             </div>
                         </div>
