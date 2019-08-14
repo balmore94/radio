@@ -42,12 +42,16 @@ public class EmisionesServlet extends HttpServlet {
 
     protected void insertar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         String emision = request.getParameter("emision");
 
         EmisionesBean eb = new EmisionesBean(0);
         eb.setEmision(emision);
-
+          
+  
         respuesta = ed.insertar(eb);
+        System.out.println(eb.getId_emisiones());
+        System.out.println(eb.getEmision());
         if (respuesta) {
             msg = "Guardado";
         } else {

@@ -2,6 +2,7 @@ package dao;
 
 import conexion.Conexion;
 import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,7 +10,7 @@ import modelo.EmisionesBean;
 
 public class EmisionesDao {
     
-    Conexion conn;
+    Conexion conn = new Conexion();
     
     public EmisionesDao(Conexion con){
         this.conn = conn; 
@@ -25,7 +26,7 @@ public class EmisionesDao {
             
             return true;
         } catch (Exception e) {
-            return false;
+           return false;
         }
     }
     
@@ -44,7 +45,9 @@ public class EmisionesDao {
     }
     
     public List<EmisionesBean> consultarAll(){
-        String sql = "select * from emisiones";
+        String sql = "select telefonos.*, compania.*\n" +
+"from telefonos, compania\n" +
+"where telefonos.compania=compania.id_compania";
         List<EmisionesBean> lista = new LinkedList<>();
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);

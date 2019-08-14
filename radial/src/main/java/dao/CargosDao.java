@@ -31,7 +31,7 @@ public class CargosDao {
     
   
     public List<CargosBean> consultarAll(){
-        String sql = "select * cargos";
+        String sql = "select * from cargos";
         List<CargosBean> lista = new LinkedList<>();
         try {
            PreparedStatement ps = conn.conectar().prepareStatement(sql);
@@ -41,6 +41,7 @@ public class CargosDao {
                cb = new CargosBean(rs.getInt("id_cargo"));
                cb.setCargo(rs.getString("cargo"));
                lista.add(cb);
+   
            }
            return lista;
         } catch (Exception e) {
