@@ -5,6 +5,7 @@
 --%>
 
 
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -128,8 +129,8 @@
         <!-- ##### Breadcumb Area Start ##### -->
         <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb.jpg);">
             <div class="bradcumbContent">
-                <h2>Programas radiales</h2>
-                <p>Listado de programas</p>
+                <h2>Encuestas radiales</h2>
+                <p>Listado de encuestas</p>
 
             </div>
         </section>
@@ -140,29 +141,35 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 col-md-offset-3"> 
-                         ${msj}
+                        ${msj}
                         <div class="contact-content mb-100">
                             <table id="example" class="table table-striped table-bordered" style="width:100%">
                                 <thead class="thead-dark">
                                     <tr>
                                         <th>Codigo</th>
-                                        <th>Nombre Programa</th>
-                                        <th>Genero Programa</th>
+                                        <th>Aprobaciones</th>
+                                        <th>Rechazos</th>
+                                        <th>Indiferencias</th>
+                                        <th>Total Encuestas</th>
+                                        <th>Programa</th>
                                         <th></th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach items="${prom}" var="p">
+                                    <c:forEach  items="${encuestab}" var="en">
                                         <tr>
-                                            <td><c:out value="${p.id_programa}"/></td>
-                                            <td>${p.nombre_programa}</td>
-                                            <td>${p.genero.nombre_genero}</td>
+                                            <td>${en.id_encuestas}</td> 
+                                            <td>${en.aprobaciones}</td>
+                                            <td>${en.rechazos}</td>
+                                            <td>${en.indiferencias}</td>
+                                            <td>${en.total_encuestados}</td>
+                                            <td>${en.programa.nombre_programa}</td> 
                                             <td>
-                                                <a href="programa?action=eliminar&id=${p.id_programa}"><button class="btn btn-danger btn-sm">Eliminar</button></a>
+                                                <a href="encuestas?action=eliminar&id=${en.id_encuestas}"><button class="btn btn-danger btn-sm">Eliminar</button></a>
                                             </td>
                                             <td>
-                                                <a href="programa?action=getById&id=${p.id_programa}"><button class="btn btn-info btn-sm">Modificar</button></a>
+                                                <a href="encuestas?action=getById&id=${en.id_encuestas}"><button class="btn btn-info btn-sm">Modificar</button></a>
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -174,7 +181,7 @@
                 <div class="row">
                     <div class="col-md-3"></div>
                     <div class="col-md-4">
-                        <a href="programa?action=show" class="btn btn-block btn-outline-dark">Nuevo</a>
+                        <a href="encuestas?action=show" class="btn btn-block btn-outline-dark">Nuevo</a>
                     </div>
                 </div>
                 <br>

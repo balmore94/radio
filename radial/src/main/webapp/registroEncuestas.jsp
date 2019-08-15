@@ -1,9 +1,8 @@
 <%-- 
-    Document   : MostrarTipoT
-    Created on : 08-13-2019, 02:16:16 PM
+    Document   : registroProgramas
+    Created on : 08-13-2019, 04:42:30 PM
     Author     : mario.rodriguezusam
 --%>
-
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -97,7 +96,7 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href="event.html">Events</a></li>
+                                        <li><a href="event .html">Events</a></li>
                                         <li><a href="blog.html">News</a></li>
                                         <li><a href="contact.html">Contact</a></li>
                                     </ul>
@@ -128,59 +127,59 @@
         <!-- ##### Breadcumb Area Start ##### -->
         <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb.jpg);">
             <div class="bradcumbContent">
-                <h2>Programas radiales</h2>
-                <p>Listado de programas</p>
+                <h2>Formaularios</h2>
+                <p></p>
 
             </div>
         </section>
         <!-- ##### Breadcumb Area End ##### -->
 
-        <!-- ##### Contact Area Start ##### -->
-        <section class="contact-area section-padding-100-0">
+        <section class="section-padding-100">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-12 col-md-offset-3"> 
-                         ${msj}
-                        <div class="contact-content mb-100">
-                            <table id="example" class="table table-striped table-bordered" style="width:100%">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th>Codigo</th>
-                                        <th>Nombre Programa</th>
-                                        <th>Genero Programa</th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <c:forEach items="${prom}" var="p">
-                                        <tr>
-                                            <td><c:out value="${p.id_programa}"/></td>
-                                            <td>${p.nombre_programa}</td>
-                                            <td>${p.genero.nombre_genero}</td>
-                                            <td>
-                                                <a href="programa?action=eliminar&id=${p.id_programa}"><button class="btn btn-danger btn-sm">Eliminar</button></a>
-                                            </td>
-                                            <td>
-                                                <a href="programa?action=getById&id=${p.id_programa}"><button class="btn btn-info btn-sm">Modificar</button></a>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-                                </tbody>
-                            </table>
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-8">
+                        ${msj}
+                        <div class="login-content">
+                            <h3>Registro de encuestas</h3>
+                            <!-- Login Form -->
+                            <div class="login-form">
+                                <form action="encuestas?action=guardar" method="post">
+                                    <div class="form-group">
+                                        <label>Total encuestados</label>
+                                        <input type="number" step="any" min="0" name="total" class="form-control" placeholder="Ingrese total encuestados">
+                                        <!--<small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>-->
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Aprobaciones</label>
+                                        <input type="number" name="aprobaciones" step="any" min="0" class="form-control" placeholder="Ingrese numero de aprobados">
+                                        <!--<small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>-->
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Rechazos</label>
+                                        <input type="number" name="rechazos" step="any" min="0" class="form-control" placeholder="Ingrese numero de rechazados">
+                                        <!--<small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>-->
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Indiferentes</label>
+                                        <input type="number" name="indiferentes" step="any" min="0" class="form-control" placeholder="Ingrese numero de indiferentes">
+                                        <!--<small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>-->
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Seleccione genero del programa</label>
+                                        <select name="programa" class="form-control">
+                                            <c:forEach items="${programa}" var="p">
+                                                <option value="<c:out value="${p.id_programa}"/>"><c:out value="${p.nombre_programa}"/></option>
+                                            </c:forEach> 
+                                        </select> 
+                                    </div>
+                                    <button type="submit" class="btn oneMusic-btn mt-30">Guardar</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-4">
-                        <a href="programa?action=show" class="btn btn-block btn-outline-dark">Nuevo</a>
-                    </div>
-                </div>
-                <br>
             </div>
         </section>
-        <!-- ##### Contact Area End ##### -->
 
 
 

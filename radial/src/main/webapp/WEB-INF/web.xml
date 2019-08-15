@@ -44,6 +44,10 @@
         <servlet-name>ProgramaServlet</servlet-name>
         <servlet-class>controlador.ProgramaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EncuestasServlet</servlet-name>
+        <servlet-class>controlador.EncuestasServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>EmisionesServlet</servlet-name>
         <url-pattern>/emisiones</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>ProgramaServlet</servlet-name>
         <url-pattern>/programa</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EncuestasServlet</servlet-name>
+        <url-pattern>/encuestas</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -1,29 +1,29 @@
 package controlador;
 
 import conexion.Conexion;
-import dao.GeneroDao;
+import dao.EncuestasDAO;
 import dao.ProgramasDAO;
-import dao.Tipo_TransmisionDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.GeneroBean;
+import modelo.EncuestasBean;
 import modelo.ProgramasBean;
 
 /**
  *
  * @author mario.rodriguezusam
  */
-public class ProgramaServlet extends HttpServlet {
+public class EncuestasServlet extends HttpServlet {
 
     Conexion conn = new Conexion();
-    ProgramasDAO pro = new ProgramasDAO(conn);
-    GeneroDao gen = new GeneroDao(conn);
+    EncuestasDAO enDAO = new EncuestasDAO(conn);
+    ProgramasDAO proDAO = new ProgramasDAO(conn);
     RequestDispatcher rd;
     boolean res;
     String msj;
@@ -55,35 +55,43 @@ public class ProgramaServlet extends HttpServlet {
 
     protected void mostrar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<ProgramasBean> prom = pro.mostrarProgramas();
-        request.setAttribute("prom", prom);
-        rd = request.getRequestDispatcher("/mostrarProgramas.jsp");
+        List<EncuestasBean> encuestab = enDAO.mostrarEncuestas();
+        request.setAttribute("encuestab", encuestab);
+        rd = request.getRequestDispatcher("/mostrarEncuestas.jsp");
         rd.forward(request, response);
+
     }
 
     protected void showBeforeSave(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<GeneroBean> generos = gen.findAll();
-        request.setAttribute("generos", generos);
-        rd = request.getRequestDispatcher("/registroProgramas.jsp");
+        List<ProgramasBean> programa = proDAO.mostrarProgramas();
+        request.setAttribute("programa", programa);
+        rd = request.getRequestDispatcher("/registroEncuestas.jsp");
         rd.forward(request, response);
+
     }
 
     protected void guardar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String programa = request.getParameter("programa");
-        int genero = Integer.parseInt(request.getParameter("genero"));
+        int total = Integer.parseInt(request.getParameter("total"));
+        int aprobaciones = Integer.parseInt(request.getParameter("aprobaciones"));
+        int rechazos = Integer.parseInt(request.getParameter("rechazos"));
+        int indiferentes = Integer.parseInt(request.getParameter("indiferentes"));
 
-        ProgramasBean prob = new ProgramasBean(0);
-        prob.setNombre_programa(programa);
-        List<GeneroBean> generos = gen.findAll();
-        //List<ProgramasBean> prom = pro.mostrarProgramas();
-        request.setAttribute("generos", generos);
-        GeneroBean geb = new GeneroBean(genero);
-        prob.setGenero(geb);
+        EncuestasBean encu = new EncuestasBean(0);
+        encu.setTotal_encuestados(total);
+        encu.setAprobaciones(aprobaciones);
+        encu.setRechazos(rechazos);
+        encu.setIndiferencias(indiferentes);
+        List<ProgramasBean> programa = proDAO.mostrarProgramas();
+        request.setAttribute("programa", programa);
 
-        res = pro.guardar(prob);
-        List<ProgramasBean> prom = pro.mostrarProgramas();
+        int progra = Integer.parseInt(request.getParameter("programa"));
+        ProgramasBean pro = new ProgramasBean(progra);
+        encu.setPrograma(pro);
+
+        res = enDAO.guardar(encu);
+        List<EncuestasBean> encuestab = enDAO.mostrarEncuestas();
         if (res) {
             msj = "<div id=\"moo\" class=\"alert alert-success alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
                     + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
@@ -97,18 +105,17 @@ public class ProgramaServlet extends HttpServlet {
                     + "  Error! El registro no se pudo guardar...\n"
                     + "</div>";
         }
-
         request.setAttribute("msj", msj);
-        request.setAttribute("prom", prom);
-        rd = request.getRequestDispatcher("mostrarProgramas.jsp");
+        request.setAttribute("encuestab", encuestab);
+        rd = request.getRequestDispatcher("/mostrarEncuestas.jsp");
         rd.forward(request, response);
     }
 
     protected void eliminar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        res = pro.elimiar(id);
-        List<ProgramasBean> prom = pro.mostrarProgramas();
+        res = enDAO.eliminar(id);
+        List<EncuestasBean> encuestab = enDAO.mostrarEncuestas();
         if (res) {
             msj = "<div id=\"moo\" class=\"alert alert-success alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
                     + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
@@ -123,8 +130,8 @@ public class ProgramaServlet extends HttpServlet {
                     + "</div>";
         }
         request.setAttribute("msj", msj);
-        request.setAttribute("prom", prom);
-        rd = request.getRequestDispatcher("mostrarProgramas.jsp");
+        request.setAttribute("encuestab", encuestab);
+        rd = request.getRequestDispatcher("/mostrarEncuestas.jsp");
         rd.forward(request, response);
     }
 
@@ -132,31 +139,38 @@ public class ProgramaServlet extends HttpServlet {
             throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
 
-        List<ProgramasBean> programa = pro.getById(id);
-        List<GeneroBean> generos = gen.findAll();
-        request.setAttribute("generos", generos);
-        request.setAttribute("programa", programa);
-        rd = request.getRequestDispatcher("editarProgramas.jsp");
+        List<EncuestasBean> enb = enDAO.GetEncuById(id);
+        List<ProgramasBean> pro = proDAO.mostrarProgramas();
+        request.setAttribute("enb", enb);
+        request.setAttribute("pro", pro);
+
+        rd = request.getRequestDispatcher("/editarEncuestas.jsp");
         rd.forward(request, response);
 
     }
 
     protected void actualizar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         int id = Integer.parseInt(request.getParameter("id"));
-        String programa = request.getParameter("programa");
-        int genero = Integer.parseInt(request.getParameter("genero"));
+        int total = Integer.parseInt(request.getParameter("total"));
+        int aprobaciones = Integer.parseInt(request.getParameter("aprobaciones"));
+        int rechazos = Integer.parseInt(request.getParameter("rechazos"));
+        int indiferentes = Integer.parseInt(request.getParameter("indiferentes"));
 
-        ProgramasBean pb = new ProgramasBean(id);
-        pb.setNombre_programa(programa);
+        EncuestasBean encu = new EncuestasBean(id);
+        encu.setTotal_encuestados(total);
+        encu.setAprobaciones(aprobaciones);
+        encu.setRechazos(rechazos);
+        encu.setIndiferencias(indiferentes);
+        List<ProgramasBean> programa = proDAO.mostrarProgramas();
+        request.setAttribute("programa", programa);
 
-        GeneroBean ge = new GeneroBean(genero);
-        pb.setGenero(ge);
+        int progra = Integer.parseInt(request.getParameter("programa"));
+        ProgramasBean pro = new ProgramasBean(progra);
+        encu.setPrograma(pro);
 
-        res = pro.actualizar(pb);
-        List<ProgramasBean> prom = pro.mostrarProgramas();
-
+        res = enDAO.actualizar(encu);
+        List<EncuestasBean> encuestab = enDAO.mostrarEncuestas();
         if (res) {
             msj = "<div id=\"moo\" class=\"alert alert-success alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
                     + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
@@ -171,10 +185,9 @@ public class ProgramaServlet extends HttpServlet {
                     + "</div>";
         }
         request.setAttribute("msj", msj);
-        request.setAttribute("prom", prom);
-        rd = request.getRequestDispatcher("mostrarProgramas.jsp");
+        request.setAttribute("encuestab", encuestab);
+        rd = request.getRequestDispatcher("/mostrarEncuestas.jsp");
         rd.forward(request, response);
-
     }
 
     @Override
