@@ -22,12 +22,13 @@ import modelo.CargosBean;
  * @author maria.aguillonusam
  */
 public class CargosServlet extends HttpServlet {
+
     Conexion conn = new Conexion();
     CargosDao cd = new CargosDao(conn);
     RequestDispatcher rd;
     String msg;
     boolean respuesta;
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -39,25 +40,33 @@ public class CargosServlet extends HttpServlet {
                 consultarAll(request, response);
         }
     }
-    
+
     protected void insertar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String cargo = request.getParameter("cargo");
-        
+
         CargosBean cb = new CargosBean(0);
         cb.setCargo(cargo);
-        
+
         respuesta = cd.insertar(cb);
         if (respuesta) {
-            msg = "Guardado";
-        }else{
-            msg = "No guardado";
+            msg = "<div id=\"moo\" class=\"alert alert-success alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Éxito! Registro guardado...\n"
+                    + "</div>";
+        } else {
+            msg = "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\" auto-close=\"5000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Error! El registro no se pudo guardar...\n"
+                    + "</div>";
         }
         request.setAttribute("msg", msg);
         rd = request.getRequestDispatcher("/registroCargos.jsp");
         rd.forward(request, response);
     }
-    
+
     protected void consultarAll(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<CargosBean> lista = cd.consultarAll();
@@ -65,12 +74,13 @@ public class CargosServlet extends HttpServlet {
         rd = request.getRequestDispatcher("/cargos.jsp");
         rd.forward(request, response);
     }
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
