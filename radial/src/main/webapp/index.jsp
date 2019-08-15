@@ -91,7 +91,7 @@
                                             </ul>
                                         </li>
                                         <li><a href="blog.html">News</a></li>
-                                        <li><a href="telefonos?action=consultarAll">Contact</a></li>
+                                        <li><a href="">Contact</a></li>
                                     </ul>
 
                                     <!-- Login/Register & Cart Button -->
