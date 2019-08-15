@@ -116,74 +116,62 @@
         <!-- ##### Breadcumb Area Start ##### -->
         <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb.jpg);">
             <div class="bradcumbContent">
-                <h2>Radios</h2>
-                <p>Listado de radios</p>
+                <h2>Consorcios</h2>
+                <p>Registro de un consorcio</p>
 
             </div>
         </section>
         <!-- ##### Breadcumb Area End ##### -->
 
-        <!-- ##### Contact Area Start ##### -->
-        <section class="contact-area section-padding-100-0">
+        <section class="section-padding-100">
             <div class="container">
-                <div class="row">
-
-                    <div class="col-md-12 col-md-offset-3"> 
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-8">
                         ${msg}
-                        <div class="contact-content mb-100">
-
-                            <table id="example" class="table table-striped table-bordered" style="width:100%">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th hidden>id_radio</th>
-                                        <th>Radio</th>
-                                        <th>Frecuencia</th>
-                                        <th>Radiodifusión</th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <c:forEach items="${radios}" var="ver">
-                                        <tr>
-                                            <td hidden>${ver.id_radio}</td>
-                                            <td>${ver.nombre_radio}</td>
-                                            <td>${ver.frecuencia}</td>
-                                            <td>${ver.transmision.nombre_transmision}</td>
-                                            <td><a href="radio?action=findById&id=${ver.id_radio}"><button class="btn btn-info btn-sm">Editar</button></a></td>
-                                            <td><a><button class="btn btn-light btn-sm">Programas</button></a></td>
-                                            <td><a href="radio?action=eliminar&id=${ver.id_radio}"><button class="btn btn-danger btn-sm">Eliminar</button></a></td>
-
-                                        </tr>
-                                    </c:forEach>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th hidden>id_radio</th>
-                                        <th>Radio</th>
-                                        <th>Frecuencia</th>
-                                        <th>Radiodifusión</th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-
-
+                        <div class="login-content">
+                            <h3>Nuevo Consorcio</h3>
+                            <!-- Login Form -->
+                            <div class="login-form">
+                                <form action="consorcios?action=insertar" method="post">
+                                    <div class="form-group">
+                                        <label>Radio:</label>
+                                        <select name="radio" class="form-control">
+                                            <option selected disabled>Seleccione la radio</option>
+                                            <c:forEach items="${radios}" var="v">
+                                                <option value="${v.id_radio}">${v.nombre_radio}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Programa:</label>
+                                        <select name="programa" class="form-control">
+                                            <option selected disabled>Seleccione un programa</option>
+                                            <c:forEach items="${lista}" var="r">
+                                                <option value="${r.id_programa}">${r.nombre_programa}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Compañia:</label>
+                                        <select class="form-control" name="compania">
+                                            <option disabled selected>Seleccione una opcion</option>
+                                            <c:forEach items="${companias}" var="l">
+                                                <option value="${l.id_compania}">${l.nombre_compania}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn oneMusic-btn mt-30">Guardar</button>
+                                </form>
+                            </div>
                         </div>
-
-
-
                     </div>
                 </div>
+            </div>
         </section>
-        <!-- ##### Contact Area End ##### -->
 
 
 
-
+        <!-- ##### Footer Area Start ##### -->
         <footer class="footer-area">
             <div class="container">
                 <div class="row d-flex flex-wrap align-items-center">
@@ -210,6 +198,7 @@
         </footer>
         <!-- ##### Footer Area Start ##### -->
 
+        <!-- ##### All Javascript Script ##### -->
         <!-- jQuery-2.2.4 js -->
         <script src="js/jquery/jquery-2.2.4.min.js"></script>
         <!-- Popper js -->

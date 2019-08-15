@@ -116,8 +116,8 @@
         <!-- ##### Breadcumb Area Start ##### -->
         <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb.jpg);">
             <div class="bradcumbContent">
-                <h2>Radios</h2>
-                <p>Listado de radios</p>
+                <h2>Consorcios</h2>
+                <p>Listado de consorcios</p>
 
             </div>
         </section>
@@ -135,36 +135,33 @@
                             <table id="example" class="table table-striped table-bordered" style="width:100%">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th hidden>id_radio</th>
+                                        <th hidden>id_consorcio</th>
                                         <th>Radio</th>
-                                        <th>Frecuencia</th>
-                                        <th>Radiodifusión</th>
+                                        <th>Programa</th>
+                                        <th>Compañía</th>
                                         <th></th>
                                         <th></th>
-                                        <th></th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach items="${radios}" var="ver">
+                                    <c:forEach items="${consorcios}" var="ver">
                                         <tr>
-                                            <td hidden>${ver.id_radio}</td>
-                                            <td>${ver.nombre_radio}</td>
-                                            <td>${ver.frecuencia}</td>
-                                            <td>${ver.transmision.nombre_transmision}</td>
-                                            <td><a href="radio?action=findById&id=${ver.id_radio}"><button class="btn btn-info btn-sm">Editar</button></a></td>
-                                            <td><a><button class="btn btn-light btn-sm">Programas</button></a></td>
-                                            <td><a href="radio?action=eliminar&id=${ver.id_radio}"><button class="btn btn-danger btn-sm">Eliminar</button></a></td>
-
+                                            <td hidden>${ver.id_consorcio}</td>
+                                            <td>${ver.radio_consorcio.nombre_radio}</td>
+                                            <td>${ver.programa_consorcio.nombre_programa}</td>
+                                            <td>${ver.compania_consorcio.nombre_compania}</td>
+                                            <td><a><button class="btn btn-info btn-sm">Editar</button></a></td>
+                                            <td><a><button class="btn btn-danger btn-sm">Eliminar</button></a></td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th hidden>id_radio</th>
+                                        <th hidden>id_consorcio</th>
                                         <th>Radio</th>
-                                        <th>Frecuencia</th>
-                                        <th>Radiodifusión</th>
-                                        <th></th>
+                                        <th>Programa</th>
+                                        <th>Compañía</th>
                                         <th></th>
                                         <th></th>
                                     </tr>
