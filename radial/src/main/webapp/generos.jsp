@@ -147,9 +147,9 @@
                                         <tr>
                                             <td hidden>${ver.id_genero}</td>
                                             <td>${ver.nombre_genero}</td>
-                                            <td><a href="radio?action=findById&id=${ver.id_genero}"><button class="btn btn-info btn-sm">Editar</button></a></td>
+                                            <td><a href="genero?action=findById&id=${ver.id_genero}"><button class="btn btn-info btn-sm">Editar</button></a></td>
 
-                                            <td><a href="radio?action=eliminar&id=${ver.id_genero}"><button class="btn btn-danger btn-sm">Eliminar</button></a></td>
+                                            <td><a href="genero?action=eliminar&id=${ver.id_genero}"><button class="btn btn-danger btn-sm">Eliminar</button></a></td>
 
                                         </tr>
                                     </c:forEach>

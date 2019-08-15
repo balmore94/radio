@@ -131,7 +131,7 @@
                             <h3>Registrar Género</h3>
                             <!-- Login Form -->
                             <div class="login-form">
-                                <form action="radio?action=insertar" method="post">
+                                <form action="genero?action=insertar" method="post">
                                     <div class="form-group">
                                         <label>Nombre:</label>
                                         <input class="form-control" name="nombre" placeholder="Ingrese el nombre del género">

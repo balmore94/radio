@@ -7,7 +7,7 @@ public class CargosBean {
 
 
     private int id_cargo;
-    private String cargo;
+    private String nombre_cargo;
     
     public CargosBean(int id_cargo){
         this.id_cargo = id_cargo;
@@ -21,13 +21,15 @@ public class CargosBean {
         this.id_cargo = id_cargo;
     }
 
-    public String getCargo() {
-        return cargo;
+    public String getNombre_cargo() {
+        return nombre_cargo;
     }
 
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
+    public void setNombre_cargo(String nombre_cargo) {
+        this.nombre_cargo = nombre_cargo;
     }
+
+   
     
     
 }

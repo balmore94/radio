@@ -46,7 +46,7 @@ public class CargosServlet extends HttpServlet {
         String cargo = request.getParameter("cargo");
 
         CargosBean cb = new CargosBean(0);
-        cb.setCargo(cargo);
+        cb.setNombre_cargo(cargo);
 
         respuesta = cd.insertar(cb);
         if (respuesta) {

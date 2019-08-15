@@ -4,6 +4,7 @@
     Author     : ronald.reyesusam
 --%>
 
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -116,8 +117,8 @@
         <!-- ##### Breadcumb Area Start ##### -->
         <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb.jpg);">
             <div class="bradcumbContent">
-                <h2>Radios</h2>
-                <p>Registro de una radio</p>
+                <h2>Género</h2>
+                <p>Editar registro de género</p>
 
             </div>
         </section>
@@ -129,30 +130,17 @@
                     <div class="col-12 col-lg-8">
                         ${msg}
                         <div class="login-content">
-                            <h3>Registrar Radio</h3>
+                            <h3>Editar género</h3>
                             <!-- Login Form -->
-                            <c:forEach items="${radio}" var="v">
+                            
                             <div class="login-form">
-                                <form action="radio?action=actualizar" method="post">
+                                <c:forEach items="${genero}" var="t">
+                                <form action="genero?action=actualizar" method="post">
                                     <div class="form-group">
                                         <label>Nombre:</label>
-                                        <input class="form-control" value="${v.nombre_radio}" name="nombre" placeholder="Ingrese el nombre de la radio">
+                                        <input class="form-control" value="${t.nombre_genero}" name="nombre">
                                         <!--<small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>-->
-                                        <input type="hidden" name="id" value="${v.id_radio}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Frecuencia:</label>
-                                        <input class="form-control" value="${v.frecuencia}" name="frecuencia" placeholder="Ingrese la frecuencias">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Transmision:</label>
-                                        <select class="form-control" name="tipo_t">
-                                            <option  selected value="${v.transmision.id_transmision}">${v.transmision.nombre_transmision}</option>
-                                            <c:forEach items="${tipot}" var="r">
-                                                <option value="${r.id_transmision}">${r.nombre_transmision}</option>
-                                            
-                                            </c:forEach>
-                                        </select>
+                                        <input type="hidden" name="id" value="${t.id_genero}">
                                     </div>
                                     <button type="submit" class="btn oneMusic-btn mt-30">Actualizar</button>
                                 </form>

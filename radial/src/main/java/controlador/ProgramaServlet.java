@@ -170,7 +170,7 @@ public class ProgramaServlet extends HttpServlet {
                     + "  Error! El registro no se pudo actualizar...\n"
                     + "</div>";
         }
-        request.setAttribute(msj, msj);
+        request.setAttribute("msj", msj);
         request.setAttribute("prom", prom);
         rd = request.getRequestDispatcher("mostrarProgramas.jsp");
         rd.forward(request, response);

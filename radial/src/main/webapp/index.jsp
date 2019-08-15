@@ -74,8 +74,8 @@
                                         </li>
                                         <li><a href="#">Programas</a>
                                             <ul class="dropdown">
-                                                <li><a href="index.jsp">Registrar</a></li>
-                                                <li><a href="albums-store.html">Mostrar</a></li>
+                                                <li><a href="programa?action=show">Registrar</a></li>
+                                                <li><a href="programa?action=mostrar">Mostrar</a></li>
                                                 <li><a href="#">Generos</a>
                                                     <ul class="dropdown">
                                                         <li><a href="registroGenero.jsp">Registrar</a></li>
@@ -98,11 +98,11 @@
                                         </li>
                                         <li><a href="compania.jsp">Trabajadores</a>
                                             <ul class="dropdown">
-                                                <li><a href="registroTrabajador.jsp">Registrar</a></li>
+                                                <li><a href="trabajadores?action=showRegistro">Registrar</a></li>
                                                 <li><a href="trabajadores?action=findAll">Mostrar</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="contact.html">Contact</a></li>
+                                        
                                     </ul>
 
                                     <!-- Login/Register & Cart Button 

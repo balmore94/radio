@@ -76,15 +76,15 @@ public class GeneroDao {
     }
     
     public List<GeneroBean>findById(int id){
-        String sql = "SELETC * FROM genero WHERE id_genero =?";
+        String sql = "SELECT * FROM genero WHERE id_genero =?";
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             List<GeneroBean> genero = new LinkedList<>();
             while(rs.next()){
-                GeneroBean geb = new GeneroBean(rs.getInt("id_compania"));
-                geb.setNombre_genero(rs.getString("nombre_compania"));
+                GeneroBean geb = new GeneroBean(rs.getInt("id_genero"));
+                geb.setNombre_genero(rs.getString("nombre_genero"));
                 genero.add(geb);
             }
             return genero;

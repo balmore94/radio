@@ -23,7 +23,7 @@ public class CargosDao {
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
             ps.setInt(1, cb.getId_cargo());
-            ps.setString(2, cb.getCargo());
+            ps.setString(2, cb.getNombre_cargo());
             ps.executeUpdate();
             
             return true;
@@ -35,18 +35,18 @@ public class CargosDao {
   
     public List<CargosBean> consultarAll(){
         String sql = "select * from cargos";
-        List<CargosBean> lista = new LinkedList<>();
+        List<CargosBean> cargos = new LinkedList<>();
         try {
            PreparedStatement ps = conn.conectar().prepareStatement(sql);
            ResultSet rs = ps.executeQuery();
            CargosBean cb;
            while(rs.next()){
                cb = new CargosBean(rs.getInt("id_cargo"));
-               cb.setCargo(rs.getString("cargo"));
-               lista.add(cb);
+               cb.setNombre_cargo(rs.getString("nombre_cargo"));
+               cargos.add(cb);
    
            }
-           return lista;
+           return cargos;
         } catch (Exception e) {
             return null;
         }
