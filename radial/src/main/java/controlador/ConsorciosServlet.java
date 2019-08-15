@@ -75,7 +75,7 @@ public class ConsorciosServlet extends HttpServlet {
             msg = "<div id=\"moo\" class=\"alert alert-danger alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
                     + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
                     + "  </button>\n"
-                    + "  Éxito! Registro guardado...\n"
+                    + "  Error! no se pudo guardar el registro...\n"
                     + "</div>";
         }
         request.setAttribute("msg", msg);
@@ -99,13 +99,23 @@ public class ConsorciosServlet extends HttpServlet {
         csb.setCompania_consorcio(c);
         
         respuesta = csd.actualizar(csb);
+        List<ConsorciosBean> consorcios = csd.findAll();
         if (respuesta) {
-            msg = "Exito";
+            msg = "<div id=\"moo\" class=\"alert alert-success alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Éxito! Registro actualizado...\n"
+                    + "</div>";
         }else{
-            msg = "Error";
+            msg = "<div id=\"moo\" class=\"alert alert-danger alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Error! no se pudo actualizar el registro...\n"
+                    + "</div>";
         }
         request.setAttribute("msg", msg);
-        rd = request.getRequestDispatcher("mostrar");
+        request.setAttribute("consorcios", consorcios);
+        rd = request.getRequestDispatcher("consorcios.jsp");
         rd.forward(request, response);
     }
 
@@ -115,13 +125,21 @@ public class ConsorciosServlet extends HttpServlet {
         respuesta = csd.eliminar(id);
         List<ConsorciosBean> consorcios = csd.findAll();
         if (respuesta) {
-            msg = "Eliminado";
+            msg = "<div id=\"moo\" class=\"alert alert-success alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Éxito! Registro eliminado...\n"
+                    + "</div>";
         }else{
-            msg = "Error";
+            msg = "<div id=\"moo\" class=\"alert alert-danger alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Error! no se pudo eliminar el registro...\n"
+                    + "</div>";
         }
         request.setAttribute("msg", msg);
         request.setAttribute("consorcios", consorcios);
-        rd = request.getRequestDispatcher("mostrar");
+        rd = request.getRequestDispatcher("consorcios.jsp");
         rd.forward(request, response);
     }
 
@@ -135,10 +153,19 @@ public class ConsorciosServlet extends HttpServlet {
 
     protected void findById(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        RadioDao rad = new RadioDao(conn);
+        ProgramasDAO prd = new ProgramasDAO(conn);
+        CompaniaDAO cod = new CompaniaDAO(conn);
         int id = Integer.parseInt(request.getParameter("id"));
-        List<ConsorciosBean> consorcios = csd.findById(id);
-        request.setAttribute("consorcios", consorcios);
-        rd = request.getRequestDispatcher("mostrar");
+        List<ConsorciosBean> consorcio = csd.findById(id);
+        List<RadioBean> radios = rad.findAll();
+        List<ProgramasBean> lista = prd.mostrarProgramas();
+        List<CompaniaBean> companias = cod.findAll();
+        request.setAttribute("consorcio", consorcio);
+        request.setAttribute("radios", radios);
+        request.setAttribute("lista", lista);
+        request.setAttribute("companias", companias);
+        rd = request.getRequestDispatcher("editarConsorcio.jsp");
         rd.forward(request, response);
     }
     
