@@ -1,9 +1,8 @@
 <%-- 
-    Document   : MostrarTipoT
-    Created on : 08-13-2019, 02:16:16 PM
+    Document   : registroProgramas
+    Created on : 08-13-2019, 04:42:30 PM
     Author     : mario.rodriguezusam
 --%>
-
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -97,7 +96,7 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href="event.html">Events</a></li>
+                                        <li><a href="event .html">Events</a></li>
                                         <li><a href="blog.html">News</a></li>
                                         <li><a href="contact.html">Contact</a></li>
                                     </ul>
@@ -128,59 +127,77 @@
         <!-- ##### Breadcumb Area Start ##### -->
         <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb.jpg);">
             <div class="bradcumbContent">
-                <h2>Programas radiales</h2>
-                <p>Listado de programas</p>
+                <h2>Formaularios</h2>
+                <p></p>
 
             </div>
         </section>
         <!-- ##### Breadcumb Area End ##### -->
 
-        <!-- ##### Contact Area Start ##### -->
-        <section class="contact-area section-padding-100-0">
+        <section class="section-padding-100">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-12 col-md-offset-3"> 
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-8">
                         ${msj}
-                        <div class="contact-content mb-100">
-                            <table id="example" class="table table-striped table-bordered" style="width:100%">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th hidden>Codigo</th>
-                                        <th>Nombre Programa</th>
-                                        <th>Genero Programa</th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <c:forEach items="${prom}" var="p">
-                                        <tr>
-                                            <td hidden><c:out value="${p.id_programa}"/></td>
-                                            <td>${p.nombre_programa}</td>
-                                            <td>${p.genero.nombre_genero}</td>
-                                            <td>
-                                                <a href="programa?action=eliminar&id=${p.id_programa}"><button class="btn btn-danger btn-sm">Eliminar</button></a>
-                                            </td>
-                                            <td>
-                                                <a href="programa?action=getById&id=${p.id_programa}"><button class="btn btn-info btn-sm">Modificar</button></a>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-                                </tbody>
-                            </table>
+                        <div class="login-content">
+                            <h3>Registro de encuestas</h3>
+                            <!-- Login Form -->
+                            <c:forEach items="${enb}" var="e"> 
+                                <div class="login-form">
+                                    <form action="encuestas?action=actualizar" method="post">
+                                        <%-- <input type="hidden" name="id" value="<c:out value="${prol.id_programa}"/>"> --%>
+                                        <div class="form-group">
+                                            <label>Total encuestados</label>
+                                            <input name="total" class="form-control" value="<c:out value="${e.total_encuestados}"/>">
+                                            <!--<small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>-->
+                                            <input type="hidden" name="id" value="${e.id_encuestas}">
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Aprobaciones</label>
+                                            <input name="aprobaciones" class="form-control" value="<c:out value="${e.aprobaciones}"/>">
+                                            <!--<small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>-->
+                                            <input type="hidden" name="id" value="${e.id_encuestas}">
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Rechazos</label>
+                                            <input name="rechazos" class="form-control" value="<c:out value="${e.rechazos}"/>">
+                                            <!--<small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>-->
+                                            <input type="hidden" name="id" value="${e.id_encuestas}">
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Indiferentes</label>
+                                            <input name="indiferentes" class="form-control" value="<c:out value="${e.indiferencias}"/>">
+                                            <!--<small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>-->
+                                            <input type="hidden" name="id" value="${e.id_encuestas}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Seleccione programa</label>
+                                            <select name="programa" class="form-control">
+                                                <%-- <option value="${p.genero.id_genero}" selected="">${p.genero.nombre_genero}</option> --%>
+                                                <c:forEach items="${pro}" var="p">
+                                                    <c:choose>
+                                                        <c:when test="${p.id_programa == e.programa.id_programa}">
+                                                            <option value="<c:out value="${p.id_programa}"/>" selected="" ><c:out value="${p.nombre_programa}"/></option>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <option value="<c:out value="${p.id_programa}"/>"><c:out value="${p.nombre_programa}"/></option>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </c:forEach> 
+                                            </select> 
+                                        </div>
+                                        <button type="submit" class="btn oneMusic-btn mt-30">Guardar</button>
+                                    </form>
+                                </c:forEach>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-4">
-                        <a href="programa?action=show" class="btn btn-block btn-outline-dark">Nuevo</a>
-                    </div>
-                </div>
-                <br>
             </div>
         </section>
-        <!-- ##### Contact Area End ##### -->
 
 
 
@@ -225,15 +242,3 @@
     </body>
 
 </html>
-<script>
-                                    $(function () {
-                                        var alert = $('div.alert[auto-close]');
-                                        alert.each(function () {
-                                            var that = $(this);
-                                            var time_period = that.attr('auto-close');
-                                            setTimeout(function () {
-                                                that.alert('close');
-                                            }, time_period);
-                                        });
-                                    });
-</script>

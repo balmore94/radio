@@ -14,6 +14,7 @@
     <body>
     <li><a href="tipot?action=mostrar">Tipo</a></li>
     <li><a href="programa?action=mostrar">Programa</a></li>
-    <li></li>
+    <li><a href="encuestas?action=mostrar">Encuesta</a></li>
+    
     </body>
 </html>

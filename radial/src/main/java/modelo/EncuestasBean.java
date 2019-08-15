@@ -1,4 +1,3 @@
-
 package modelo;
 
 /**
@@ -6,24 +5,24 @@ package modelo;
  * @author mario.rodriguezusam
  */
 public class EncuestasBean {
-    
-    private int id_escuentas;
+
+    private int id_encuestas;
     private int total_encuestados;
     private int aprobaciones;
     private int rechazos;
     private int indiferencias;
     private ProgramasBean programa;
 
-    public EncuestasBean(int id_escuentas) {
-        this.id_escuentas = id_escuentas;
+    public EncuestasBean(int id_encuestas) {
+        this.id_encuestas = id_encuestas;
     }
 
-    public int getId_escuentas() {
-        return id_escuentas;
+    public int getId_encuestas() {
+        return id_encuestas;
     }
 
-    public void setId_escuentas(int id_escuentas) {
-        this.id_escuentas = id_escuentas;
+    public void setId_encuestas(int id_encuestas) {
+        this.id_encuestas = id_encuestas;
     }
 
     public int getTotal_encuestados() {
@@ -65,7 +64,5 @@ public class EncuestasBean {
     public void setPrograma(ProgramasBean programa) {
         this.programa = programa;
     }
-    
-    
-    
+
 }
