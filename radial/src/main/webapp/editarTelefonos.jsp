@@ -4,6 +4,7 @@
     Author     : ronald.reyesusam
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -126,7 +127,7 @@
         <!-- ##### Breadcumb Area Start ##### -->
         <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb.jpg);">
             <div class="bradcumbContent">
-                <h2>Formaularios</h2>
+                <h2>Telefonos</h2>
                 <p></p>
 
             </div>
@@ -137,23 +138,27 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-8">
+                        ${msg}
                         <div class="login-content">
-                            <h3>Registro de</h3>
+                            <h3>Registro de Telefonos</h3>
                             <!-- Login Form -->
-                            <div class="login-form">
-                                <form action="#" method="post">
-                                    <div class="form-group">
-                                        <label>Campo 1</label>
-                                        <input class="form-control" placeholder="Ingrese campo 1">
-                                        <!--<small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>-->
-                                    </div>
-                                    <div class="form-group">
-                                        <label>campo 2</label>
-                                        <input class="form-control" placeholder="Ingrese campo 2">
-                                    </div>
-                                    <button type="submit" class="btn oneMusic-btn mt-30">Boton</button>
-                                </form>
-                            </div>
+                            <c:forEach items="${lista}" var="ver">
+                                <div class="login-form">
+                                    <form action="telefonos?action=actualizar" method="post">
+                                        <div class="form-group">
+                                            <label>Telefono 1</label>
+                                            <input class="form-control" value="${ver.telefono1}" name="telefono1" placeholder="Ingrese">
+                                            <!--<small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>-->
+                                            <input type="hidden" name="id_telefono" value="${ver.id_telefono}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Compañia</label>
+                                            <input class="form-control" value="${ver.compania}" name="compania" placeholder="Ingrese">
+                                        </div>
+                                        <button type="submit" class="btn oneMusic-btn mt-30">Actualizar</button>
+                                    </form>
+                                </div>
+                            </c:forEach>
                         </div>
                     </div>
                 </div>
@@ -203,3 +208,15 @@
     </body>
 
 </html>
+<script>
+                                    $(function () {
+                                        var alert = $('div.alert[auto-close]');
+                                        alert.each(function () {
+                                            var that = $(this);
+                                            var time_period = that.attr('auto-close');
+                                            setTimeout(function () {
+                                                that.alert('close');
+                                            }, time_period);
+                                        });
+                                    });
+</script>
