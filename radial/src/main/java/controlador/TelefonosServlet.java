@@ -56,9 +56,17 @@ public class TelefonosServlet extends HttpServlet {
 
         respuesta = td.insertar(tb);
         if (respuesta) {
-            msg = "Guardado";
+            msg = "<div id=\"moo\" class=\"alert alert-success alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Éxito! Registro guardado...\n"
+                    + "</div>";
         } else {
-            msg = "No guardado";
+            msg = "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\" auto-close=\"5000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Error! El registro no se pudo guardar...\n"
+                    + "</div>";
         }
         request.setAttribute("msg", msg);
         rd = request.getRequestDispatcher("/registroTelefonos.jsp");
@@ -79,9 +87,17 @@ public class TelefonosServlet extends HttpServlet {
         respuesta = td.actualizar(tb);
         List<TelefonosBean> lista = td.consultarAll();
         if (respuesta) {
-            msg = "Actualizado";
+            msg = "<div id=\"moo\" class=\"alert alert-success alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Éxito! Registro actualizado...\n"
+                    + "</div>";
         } else {
-            msg = "No actualizado";
+            msg = "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\" auto-close=\"5000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Error! El registro no se pudo actualizar...\n"
+                    + "</div>";
         }
         request.setAttribute("msg", msg);
         request.setAttribute("lista", lista);
@@ -112,9 +128,17 @@ public class TelefonosServlet extends HttpServlet {
         respuesta = td.eliminar(id_telefono);
         List<TelefonosBean> lista = td.consultarAll();
         if (respuesta) {
-            msg = "Eliminado";
+            msg = "<div id=\"moo\" class=\"alert alert-success alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Éxito! Registro eliminado...\n"
+                    + "</div>";
         }else{
-            msg = "No eliminado";
+            msg = "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\" auto-close=\"5000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Error! El registro no se pudo eliminar...\n"
+                    + "</div>";
         }
         request.setAttribute("msg", msg);
         request.setAttribute("lista", lista);

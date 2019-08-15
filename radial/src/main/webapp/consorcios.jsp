@@ -4,6 +4,7 @@
     Author     : ronald.reyesusam
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,37 +66,26 @@
                                 <!-- Nav Start -->
                                 <div class="classynav">
                                     <ul>
-                                        <li><a href="index.html">Home</a></li>
-                                        <li><a href="albums-store.html">Albums</a></li>
-                                        <li><a href="#">Pages</a>
+                                        <li><a href="index.jsp">Inicio</a></li>
+                                        <li><a href="#">Radios</a>
                                             <ul class="dropdown">
-                                                <li><a href="index.html">Home</a></li>
-                                                <li><a href="albums-store.html">Albums</a></li>
-                                                <li><a href="event.html">Events</a></li>
-                                                <li><a href="blog.html">News</a></li>
-                                                <li><a href="contact.html">Contact</a></li>
-                                                <li><a href="elements.html">Elements</a></li>
-                                                <li><a href="login.html">Login</a></li>
-                                                <li><a href="#">Dropdown</a>
+                                                <li><a href="registroRadio.jsp">Registrar</a></li>
+                                                <li><a href="radio?action=findAll">Mostrar</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Programas</a>
+                                            <ul class="dropdown">
+                                                <li><a href="index.jsp">Registrar</a></li>
+                                                <li><a href="albums-store.html">Mostrar</a></li>
+                                                <li><a href="#">Generos</a>
                                                     <ul class="dropdown">
-                                                        <li><a href="#">Even Dropdown</a></li>
-                                                        <li><a href="#">Even Dropdown</a></li>
-                                                        <li><a href="#">Even Dropdown</a></li>
-                                                        <li><a href="#">Even Dropdown</a>
-                                                            <ul class="dropdown">
-                                                                <li><a href="#">Deeply Dropdown</a></li>
-                                                                <li><a href="#">Deeply Dropdown</a></li>
-                                                                <li><a href="#">Deeply Dropdown</a></li>
-                                                                <li><a href="#">Deeply Dropdown</a></li>
-                                                                <li><a href="#">Deeply Dropdown</a></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li><a href="#">Even Dropdown</a></li>
+                                                        <li><a href="#">Registrar</a></li>
+                                                        <li><a href="#">Mostrar</a></li>
                                                     </ul>
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href="event .html">Events</a></li>
+                                        <li><a href="event.html">Events</a></li>
                                         <li><a href="blog.html">News</a></li>
                                         <li><a href="contact.html">Contact</a></li>
                                     </ul>
@@ -126,44 +116,71 @@
         <!-- ##### Breadcumb Area Start ##### -->
         <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb.jpg);">
             <div class="bradcumbContent">
-                <h2>Telefonos</h2>
-                <p></p>
+                <h2>Consorcios</h2>
+                <p>Listado de consorcios</p>
 
             </div>
         </section>
         <!-- ##### Breadcumb Area End ##### -->
 
-        <section class="section-padding-100">
+        <!-- ##### Contact Area Start ##### -->
+        <section class="contact-area section-padding-100-0">
             <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-12 col-lg-8">
+                <div class="row">
+
+                    <div class="col-md-12 col-md-offset-3"> 
                         ${msg}
-                        <div class="login-content">
-                            <h3>Registro de Telefonos</h3>
-                            <!-- Login Form -->
-                            <div class="login-form">
-                                <form action="telefonos?action=insertar" method="post">
-                                    <div class="form-group">
-                                        <label>Telefono 1</label>
-                                        <input class="form-control" name="telefono1" placeholder="Ingrese">
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label>Compañia</label>
-                                        <input class="form-control" name="compania" placeholder="Ingrese">
-                                    </div>
-                                    <button type="submit" class="btn oneMusic-btn mt-30">Guardar</button>
-                                </form>
-                            </div>
+                        <div class="contact-content mb-100">
+
+                            <table id="example" class="table table-striped table-bordered" style="width:100%">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th hidden>id_consorcio</th>
+                                        <th>Radio</th>
+                                        <th>Programa</th>
+                                        <th>Compañía</th>
+                                        <th></th>
+                                        <th></th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach items="${consorcios}" var="ver">
+                                        <tr>
+                                            <td hidden>${ver.id_consorcio}</td>
+                                            <td>${ver.radio_consorcio.nombre_radio}</td>
+                                            <td>${ver.programa_consorcio.nombre_programa}</td>
+                                            <td>${ver.compania_consorcio.nombre_compania}</td>
+                                            <td><a><button class="btn btn-info btn-sm">Editar</button></a></td>
+                                            <td><a><button class="btn btn-danger btn-sm">Eliminar</button></a></td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th hidden>id_consorcio</th>
+                                        <th>Radio</th>
+                                        <th>Programa</th>
+                                        <th>Compañía</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+
+
                         </div>
+
+
+
                     </div>
                 </div>
-            </div>
         </section>
+        <!-- ##### Contact Area End ##### -->
 
 
 
-        <!-- ##### Footer Area Start ##### -->
+
         <footer class="footer-area">
             <div class="container">
                 <div class="row d-flex flex-wrap align-items-center">
@@ -190,7 +207,6 @@
         </footer>
         <!-- ##### Footer Area Start ##### -->
 
-        <!-- ##### All Javascript Script ##### -->
         <!-- jQuery-2.2.4 js -->
         <script src="js/jquery/jquery-2.2.4.min.js"></script>
         <!-- Popper js -->

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.EmisionesBean;
+
 /**
  *
  * @author maria.aguillonusam
@@ -45,20 +46,27 @@ public class EmisionesServlet extends HttpServlet {
 
     protected void insertar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String emision = request.getParameter("emision");
 
         EmisionesBean eb = new EmisionesBean(0);
         eb.setEmision(emision);
-          
-  
+
         respuesta = ed.insertar(eb);
         System.out.println(eb.getId_emisiones());
         System.out.println(eb.getEmision());
         if (respuesta) {
-            msg = "Guardado";
+            msg = "<div id=\"moo\" class=\"alert alert-success alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Éxito! Registro guardado...\n"
+                    + "</div>";
         } else {
-            msg = "No guardado";
+            msg = "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\" auto-close=\"5000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Error! El registro no se pudo guardar...\n"
+                    + "</div>";
         }
         request.setAttribute("msg", msg);
         rd = request.getRequestDispatcher("/registroEmisiones.jsp");
@@ -76,9 +84,17 @@ public class EmisionesServlet extends HttpServlet {
         respuesta = ed.actualizar(eb);
         List<EmisionesBean> lista = ed.consultarAll();
         if (respuesta) {
-            msg = "Actualizado";
+            msg = "<div id=\"moo\" class=\"alert alert-success alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Éxito! Registro actualizado...\n"
+                    + "</div>";
         } else {
-            msg = "No actualizado";
+            msg = "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\" auto-close=\"5000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Error! El registro no se pudo actualizar...\n"
+                    + "</div>";
         }
         request.setAttribute("msg", msg);
         request.setAttribute("lista", lista);
@@ -110,9 +126,17 @@ public class EmisionesServlet extends HttpServlet {
         respuesta = ed.eliminar(id_emisiones);
         List<EmisionesBean> lista = ed.consultarAll();
         if (respuesta) {
-            msg = "Eliminado";
+            msg = "<div id=\"moo\" class=\"alert alert-success alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Éxito! Registro eliminado...\n"
+                    + "</div>";
         } else {
-            msg = "No eliminado";
+            msg = "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\" auto-close=\"5000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Error! El registro no se pudo eliminar...\n"
+                    + "</div>";
         }
         request.setAttribute("msg", msg);
         request.setAttribute("lista", lista);

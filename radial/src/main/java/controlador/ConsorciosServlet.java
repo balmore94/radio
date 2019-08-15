@@ -1,7 +1,10 @@
 package controlador;
 
 import conexion.Conexion;
+import dao.CompaniaDAO;
 import dao.ConsorciosDao;
+import dao.ProgramasDAO;
+import dao.RadioDao;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -41,6 +44,9 @@ public class ConsorciosServlet extends HttpServlet {
             case "findById":
                 findById(request, response);
                 break;
+            case "showRegistro":
+                showRegistro(request, response);
+                break;
         }
     }
 
@@ -60,12 +66,20 @@ public class ConsorciosServlet extends HttpServlet {
         
         respuesta = csd.insertar(csb);
         if (respuesta) {
-            msg = "Exito";
+            msg = "<div id=\"moo\" class=\"alert alert-success alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Éxito! Registro guardado...\n"
+                    + "</div>";
         }else{
-            msg = "Error";
+            msg = "<div id=\"moo\" class=\"alert alert-danger alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Éxito! Registro guardado...\n"
+                    + "</div>";
         }
         request.setAttribute("msg", msg);
-        rd = request.getRequestDispatcher("registro");
+        rd = request.getRequestDispatcher("registroConsorcio.jsp");
         rd.forward(request, response);
     }
 
@@ -115,7 +129,7 @@ public class ConsorciosServlet extends HttpServlet {
             throws ServletException, IOException {
         List<ConsorciosBean> consorcios = csd.findAll();
         request.setAttribute("consorcios", consorcios);
-        rd = request.getRequestDispatcher("mostrar");
+        rd = request.getRequestDispatcher("consorcios.jsp");
         rd.forward(request, response);
     }
 
@@ -127,7 +141,23 @@ public class ConsorciosServlet extends HttpServlet {
         rd = request.getRequestDispatcher("mostrar");
         rd.forward(request, response);
     }
-
+    
+    protected void showRegistro(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        RadioDao rad = new RadioDao(conn);
+        ProgramasDAO prd = new ProgramasDAO(conn);
+        CompaniaDAO cod = new CompaniaDAO(conn);
+        List<RadioBean> radios = rad.findAll();
+        List<ProgramasBean> lista = prd.mostrarProgramas();
+        List<CompaniaBean> companias = cod.findAll();
+        request.setAttribute("radios", radios);
+        request.setAttribute("lista", lista);
+        request.setAttribute("companias", companias);
+        rd = request.getRequestDispatcher("registroConsorcio.jsp");
+        rd.forward(request, response);
+    }
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

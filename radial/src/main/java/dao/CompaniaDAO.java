@@ -68,22 +68,22 @@ public class CompaniaDAO {
         }
     }
 
-    public List<CompaniaBean> findAll()throws Exception{
+    public List<CompaniaBean> findAll(){
        
         try {
             String query = "select * from compania";
             PreparedStatement stm = this.conn.conectar().prepareStatement(query);
             ResultSet rs = stm.executeQuery();
-            List<CompaniaBean> Lista = new LinkedList<>();
+            List<CompaniaBean> companias = new LinkedList<>();
             while (rs.next()) {
                 CompaniaBean  com = new CompaniaBean(rs.getInt("id_compania"));
                 com.setRegistrofc(rs.getString("registrofc"));
                 com.setNombre_compania(rs.getString("nombre_compania"));
-                Lista.add(com);                       
+                companias.add(com);                       
             }
-             return Lista;
+             return companias;
         } catch (Exception e) {
-           throw e;
+           return null;
         }
     }
     

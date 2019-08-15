@@ -90,21 +90,32 @@
                                                 <li><a href="compani?action=findAll">Compañias</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="blog.html">News</a></li>
+                                        <li><a href="#">Consorcios</a>
+                                            <ul class="dropdown">
+                                                <li><a href="consorcios?action=showRegistro">Registrar</a></li>
+                                                <li><a href="consorcios?action=findAll">Mostrar</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="compania.jsp">Trabajadores</a>
+                                            <ul class="dropdown">
+                                                <li><a href="registroTrabajador.jsp">Registrar</a></li>
+                                                <li><a href="trabajadores?action=findAll">Mostrar</a></li>
+                                            </ul>
+                                        </li>
                                         <li><a href="contact.html">Contact</a></li>
                                     </ul>
 
-                                    <!-- Login/Register & Cart Button -->
+                                    <!-- Login/Register & Cart Button 
                                     <div class="login-register-cart-button d-flex align-items-center">
-                                        <!-- Login/Register -->
+                                        Login/Register 
                                         <div class="login-register-btn mr-50">
                                             <a href="login.html" id="loginBtn">Login / Register</a>
                                         </div>
 
-                                        <!-- Cart Button -->
+                                        <!-- Cart Button 
                                         <div class="cart-btn">
                                             <p><span class="icon-shopping-cart"></span> <span class="quantity">1</span></p>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                                 <!-- Nav End -->
