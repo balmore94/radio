@@ -55,7 +55,7 @@ public class ConsorciosDao {
     }
     
     public boolean eliminar(int id){
-        String sql = "DELETE FROM consorcio WHERE id_consorcio =?";
+        String sql = "DELETE FROM consorcios WHERE id_consorcio =?";
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
             ps.setInt(1, id);
@@ -93,23 +93,26 @@ public class ConsorciosDao {
     
     
     public List<ConsorciosBean>findById(int id){
-        String sql = "SELECT * FROM consorcios WHERE id_consorcio=?";
+        String sql = "select consorcios.*, programas.*, compania.*, radio.* from consorcios, programas, compania, radio where consorcios.programa_consorcio = programas.id_programa and consorcios.radio_consorcio = radio.id_radio and consorcios.compania_consorcio = compania.id_compania and consorcios.id_consorcio = ?";
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            List<ConsorciosBean> consorcios = new LinkedList<>();
+            List<ConsorciosBean> consorcio = new LinkedList<>();
             while(rs.next()){
                 ConsorciosBean cs = new ConsorciosBean(rs.getInt("id_consorcio"));
                 RadioBean ra = new RadioBean(rs.getInt("radio_consorcio"));
+                ra.setNombre_radio(rs.getString("nombre_radio"));
                 cs.setRadio_consorcio(ra);
                 ProgramasBean pr = new ProgramasBean(rs.getInt("programa_consorcio"));
+                pr.setNombre_programa(rs.getString("nombre_programa"));
                 cs.setPrograma_consorcio(pr);
                 CompaniaBean co = new CompaniaBean(rs.getInt("compania_consorcio"));
+                co.setNombre_compania(rs.getString("nombre_compania"));
                 cs.setCompania_consorcio(co);
-                consorcios.add(cs);
+                consorcio.add(cs);
             }
-            return consorcios;
+            return consorcio;
         } catch (Exception e) {
             return null;
         }
