@@ -40,6 +40,10 @@
         <servlet-name>CargosServlet</servlet-name>
         <servlet-class>controlador.CargosServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProgramaServlet</servlet-name>
+        <servlet-class>controlador.ProgramaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>EmisionesServlet</servlet-name>
         <url-pattern>/emisiones</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>CargosServlet</servlet-name>
         <url-pattern>/cargos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProgramaServlet</servlet-name>
+        <url-pattern>/programa</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

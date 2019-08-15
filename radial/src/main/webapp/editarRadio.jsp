@@ -132,30 +132,30 @@
                             <h3>Registrar Radio</h3>
                             <!-- Login Form -->
                             <c:forEach items="${radio}" var="v">
-                            <div class="login-form">
-                                <form action="radio?action=actualizar" method="post">
-                                    <div class="form-group">
-                                        <label>Nombre:</label>
-                                        <input class="form-control" value="${v.nombre_radio}" name="nombre" placeholder="Ingrese el nombre de la radio">
-                                        <!--<small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>-->
-                                        <input type="hidden" name="id" value="${v.id_radio}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Frecuencia:</label>
-                                        <input class="form-control" value="${v.frecuencia}" name="frecuencia" placeholder="Ingrese la frecuencias">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Transmision:</label>
-                                        <select class="form-control" name="tipo_t">
-                                            <option  selected value="${v.transmision.id_transmision}">${v.transmision.nombre_transmision}</option>
-                                            <c:forEach items="${tipot}" var="r">
-                                                <option value="${r.id_transmision}">${r.nombre_transmision}</option>
-                                            
-                                            </c:forEach>
-                                        </select>
-                                    </div>
-                                    <button type="submit" class="btn oneMusic-btn mt-30">Actualizar</button>
-                                </form>
+                                <div class="login-form">
+                                    <form action="radio?action=actualizar" method="post">
+                                        <div class="form-group">
+                                            <label>Nombre:</label>
+                                            <input class="form-control" value="${v.nombre_radio}" name="nombre" placeholder="Ingrese el nombre de la radio">
+                                            <!--<small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>-->
+                                            <input type="hidden" name="id" value="${v.id_radio}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Frecuencia:</label>
+                                            <input class="form-control" value="${v.frecuencia}" name="frecuencia" placeholder="Ingrese la frecuencias">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Transmision:</label>
+                                            <select class="form-control" name="tipo_t">
+                                                <option  selected value="${v.transmision.id_transmision}">${v.transmision.nombre_transmision}</option>
+                                                <c:forEach items="${tipot}" var="r">
+                                                    <option value="${r.id_transmision}">${r.nombre_transmision}</option>
+
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="btn oneMusic-btn mt-30">Actualizar</button>
+                                    </form>
                                 </c:forEach>
                             </div>
                         </div>

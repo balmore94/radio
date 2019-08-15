@@ -3,6 +3,7 @@ package dao;
 import conexion.Conexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import modelo.GeneroBean;
@@ -20,7 +21,7 @@ public class ProgramasDAO {
         this.conn = conn;
     }
 
-    public List<ProgramasBean> mostrarProgramas(){
+    public List<ProgramasBean> mostrarProgramas() {
         String query = "select p.id_programa, p.nombre_programa, g.id_genero, g.nombre_genero from programas p inner join genero g on p.genero = g.id_genero order by id_programa";
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(query);
@@ -66,21 +67,19 @@ public class ProgramasDAO {
         }
     }
 
-    public List<ProgramasBean> GetPrograById(int id_programa) {
+    public List<ProgramasBean> getById(int id) {
         String query = "select * from programas where id_programa = ?";
         try {
             PreparedStatement stm = conn.conectar().prepareStatement(query);
-            stm.setInt(1, id_programa);
+            stm.setInt(1, id);
             ResultSet rt = stm.executeQuery();
             List<ProgramasBean> lista = new LinkedList<>();
-            ProgramasBean pro;
-            GeneroBean gen;
             while (rt.next()) {
-                pro = new ProgramasBean(rt.getInt("id_programa"));
+                ProgramasBean pro = new ProgramasBean(rt.getInt("id_programa"));
                 pro.setNombre_programa(rt.getString("nombre_programa"));
-                gen = new GeneroBean(rt.getInt("id_genero"));
-                gen.setId_genero(rt.getInt("id_genero"));
+                GeneroBean gen = new GeneroBean(rt.getInt("genero"));
                 pro.setGenero(gen);
+                lista.add(pro);
             }
             return lista;
         } catch (Exception e) {
@@ -88,12 +87,38 @@ public class ProgramasDAO {
         }
     }
 
-    public boolean actualizar(ProgramasBean pr) {
-        String query = "update programas set nombre_programa=?, genero=? where id_programa = ?";
+    /*public List<ProgramasBean> getById(int id) throws Exception {
+        List<ProgramasBean> lista = new ArrayList<ProgramasBean>();
+        ProgramasBean po = new ProgramasBean(0);
+        try {
+            conn.conectar();
+            String query = "select * from programas where id_programa=?";
+            PreparedStatement stm = this.conn.conectar().prepareStatement(query);
+            stm.setInt(1, id);
+            ResultSet rt = stm.executeQuery();
+            while (rt.next()) {
+                GeneroBean ge = new GeneroBean(0);
+                po.setId_programa(rt.getInt("id_programa"));
+                po.setNombre_programa(rt.getString("nombre_programa"));
+                ge.setId_genero(rt.getInt("genero"));
+                po.setGenero(ge);
+            }
+            return lista;
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            conn.desconectar();
+        }
+    } */
+
+    public boolean actualizar(ProgramasBean pr){
+        String query = "update programas set nombre_programa=?, genero=? where id_programa=?";
+        GeneroBean geb = pr.getGenero();
         try {
             PreparedStatement stm = conn.conectar().prepareStatement(query);
             stm.setString(1, pr.getNombre_programa());
-            stm.setInt(2, pr.getGenero().getId_genero());
+            stm.setInt(2, geb.getId_genero());
+            stm.setInt(3, pr.getId_programa());
             stm.executeUpdate();
             return true;
         } catch (Exception e) {

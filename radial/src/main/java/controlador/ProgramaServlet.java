@@ -77,12 +77,13 @@ public class ProgramaServlet extends HttpServlet {
         ProgramasBean prob = new ProgramasBean(0);
         prob.setNombre_programa(programa);
         List<GeneroBean> generos = gen.findAll();
-        List<ProgramasBean> prom = pro.mostrarProgramas();
+        //List<ProgramasBean> prom = pro.mostrarProgramas();
         request.setAttribute("generos", generos);
         GeneroBean geb = new GeneroBean(genero);
         prob.setGenero(geb);
 
         res = pro.guardar(prob);
+        List<ProgramasBean> prom = pro.mostrarProgramas();
         if (res) {
             msj = "<div id=\"moo\" class=\"alert alert-success alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
                     + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
@@ -98,7 +99,8 @@ public class ProgramaServlet extends HttpServlet {
         }
 
         request.setAttribute("msj", msj);
-        rd = request.getRequestDispatcher("/registroProgramas.jsp");
+        request.setAttribute("prom", prom);
+        rd = request.getRequestDispatcher("mostrarProgramas.jsp");
         rd.forward(request, response);
     }
 
@@ -128,12 +130,51 @@ public class ProgramaServlet extends HttpServlet {
 
     protected void getById(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        int id = Integer.parseInt(request.getParameter("id"));
+        
+        List<ProgramasBean> programa = pro.getById(id);
+        List<GeneroBean> generos = gen.findAll();
+        request.setAttribute("generos", generos);
+        request.setAttribute("programa", programa);
+        rd = request.getRequestDispatcher("editarProgramas.jsp");
+        rd.forward(request, response);
+        
     }
 
     protected void actualizar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        int id = Integer.parseInt(request.getParameter("id"));
+        String programa = request.getParameter("programa");
+        int genero = Integer.parseInt(request.getParameter("genero"));
 
+        ProgramasBean pb = new ProgramasBean(id);
+        pb.setNombre_programa(programa);
+        
+        GeneroBean ge = new GeneroBean(genero);
+        pb.setGenero(ge);
+        
+        res = pro.actualizar(pb);
+        List<ProgramasBean> prom = pro.mostrarProgramas();
+        
+        if (res) {
+            msj = "<div id=\"moo\" class=\"alert alert-success alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Éxito! Registro actualizado...\n"
+                    + "</div>";
+        } else {
+            msj = "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\" auto-close=\"5000\">\n"
+                    + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
+                    + "  </button>\n"
+                    + "  Error! El registro no se pudo actualizar...\n"
+                    + "</div>";
+        }
+        request.setAttribute(msj, msj);
+        request.setAttribute("prom", prom);
+        rd = request.getRequestDispatcher("mostrarProgramas.jsp");
+        rd.forward(request, response);
+        
     }
 
     @Override
