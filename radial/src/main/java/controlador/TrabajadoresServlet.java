@@ -199,7 +199,7 @@ public class TrabajadoresServlet extends HttpServlet {
         List<ProgramasBean> lista = p.mostrarProgramas();
         request.setAttribute("cargos", cargos);
         request.setAttribute("lista", lista);
-        rd = request.getRequestDispatcher("registroTrabajador.jsp");
+        rd = request.getRequestDispatcher("/registroTrabajador.jsp");
         rd.forward(request, response);
     }
 

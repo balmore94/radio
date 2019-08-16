@@ -69,8 +69,8 @@ public class CargosServlet extends HttpServlet {
 
     protected void consultarAll(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<CargosBean> lista = cd.consultarAll();
-        request.setAttribute("lista", lista);
+        List<CargosBean> cargos = cd.consultarAll();
+        request.setAttribute("cargos", cargos);
         rd = request.getRequestDispatcher("/cargos.jsp");
         rd.forward(request, response);
     }
