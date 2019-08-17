@@ -39,7 +39,7 @@ public class ProgramaradioDAO {
         }
     }
 
-    public boolean insertar(ProgramaradioBean pro) throws Exception {
+    public boolean insertar(ProgramaradioBean pro){
         String mysql = "insert into programa_radio values(?,?,?,?,?,?,?,?)";
         ProgramasBean p = pro.getPrograma();
         RadioBean r = pro.getRadio();
@@ -49,15 +49,15 @@ public class ProgramaradioDAO {
             stm.setInt(1, pro.getId_programaradio());
             stm.setInt(2, p.getId_programa());
             stm.setInt(3, r.getId_radio());
-            stm.setDate(4, pro.getFecha());
-            stm.setTime(5, pro.getHora_inicio());
+            stm.setString(4, pro.getFecha());
+            stm.setString(5, pro.getHora_inicio());
             stm.setInt(6, pro.getDuracion());
             stm.setBoolean(7, pro.getRepeticion());
             stm.setInt(8, em.getId_emisiones());
             stm.executeUpdate();
             return true;
         } catch (Exception e) {
-            throw e;
+            return false;
         }
     }
 
@@ -71,8 +71,8 @@ public class ProgramaradioDAO {
             PreparedStatement stm = this.conn.conectar().prepareStatement(ruta);
             stm.setInt(1, p.getId_programa());
             stm.setInt(2, r.getId_radio());
-            stm.setDate(3, progra.getFecha());
-            stm.setTime(4, progra.getHora_inicio());
+            stm.setString(3, progra.getFecha());
+            stm.setString(4, progra.getHora_inicio());
             stm.setInt(5, progra.getDuracion());
             stm.setBoolean(6, progra.getRepeticion());
             stm.setInt(7, em.getId_emisiones());
@@ -100,8 +100,8 @@ public class ProgramaradioDAO {
                 RadioBean rad = new RadioBean(rt.getInt("radio"));
                 rad.setNombre_radio(rt.getString("nombre_radio"));
                 prb.setRadio(rad);
-                prb.setFecha(rt.getDate("fecha"));
-                prb.setHora_inicio(rt.getTime("hora_inicio"));
+                prb.setFecha(rt.getString("fecha"));
+                prb.setHora_inicio(rt.getString("hora_inicio"));
                 prb.setDuracion(rt.getInt("duracion"));
                 prb.setRepeticion(rt.getBoolean("repeticion"));
                 EmisionesBean em = new EmisionesBean(rt.getInt("emisiones"));
@@ -132,8 +132,8 @@ public class ProgramaradioDAO {
                 RadioBean rad = new RadioBean(rt.getInt("radio"));
                 rad.setNombre_radio(rt.getString("nombre_radio"));
                 prb.setRadio(rad);
-                prb.setFecha(rt.getDate("fecha"));
-                prb.setHora_inicio(rt.getTime("hora_inicio"));
+                prb.setFecha(rt.getString("fecha"));
+                prb.setHora_inicio(rt.getString("hora_inicio"));
                 prb.setDuracion(rt.getInt("duracion"));
                 prb.setRepeticion(rt.getBoolean("repeticion"));
                 EmisionesBean em = new EmisionesBean(rt.getInt("emisiones"));

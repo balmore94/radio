@@ -45,77 +45,7 @@
                 <div class="classy-nav-container breakpoint-off">
                     <div class="container">
                         <!-- Menu -->
-                        <nav class="classy-navbar justify-content-between" id="oneMusicNav">
-
-                            <!-- Nav brand -->
-                            <a href="index.html" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
-
-                            <!-- Navbar Toggler -->
-                            <div class="classy-navbar-toggler">
-                                <span class="navbarToggler"><span></span><span></span><span></span></span>
-                            </div>
-
-                            <!-- Menu -->
-                            <div class="classy-menu">
-
-                                <!-- Close Button -->
-                                <div class="classycloseIcon">
-                                    <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                                </div>
-
-                                <!-- Nav Start -->
-                                <div class="classynav">
-                                    <ul>
-                                        <li><a href="index.jsp">Inicio</a></li>
-                                        <li><a href="#">Radios</a>
-                                            <ul class="dropdown">
-                                                <li><a href="registroRadio.jsp">Registrar</a></li>
-                                                <li><a href="radio?action=findAll">Mostrar</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Programas</a>
-                                            <ul class="dropdown">
-                                                <li><a href="programa?action=show">Registrar</a></li>
-                                                <li><a href="programa?action=mostrar">Mostrar</a></li>
-                                                <li><a href="#">Generos</a>
-                                                    <ul class="dropdown">
-                                                        <li><a href="registroGenero.jsp">Registrar</a></li>
-                                                        <li><a href="genero?action=findAll">Mostrar</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Compañia</a>
-                                            <ul class="dropdown">
-                                                <li><a href="registroCompania.jsp">Registrar</a></li>
-                                                <li><a href="compani?action=findAll">Compañias</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Consorcios</a>
-                                            <ul class="dropdown">
-                                                <li><a href="consorcios?action=showRegistro">Registrar</a></li>
-                                                <li><a href="consorcios?action=findAll">Mostrar</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Trabajadores</a>
-                                            <ul class="dropdown">
-                                                <li><a href="trabajadores?action=showRegistro">Registrar</a></li>
-                                                <li><a href="trabajadores?action=findAll">Mostrar</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Encuesta</a>
-                                            <ul class="dropdown">
-                                                <li><a href="encuestas?action=show">Registrar</a></li>
-                                                <li><a href="encuestas?action=mostrar">Mostrar</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-
-                                </div>
-                                <!-- Nav End -->
-
-                            </div>
-                        </nav>
+                        <jsp:include page="nav.jsp"></jsp:include>
                     </div>
                 </div>
             </div>

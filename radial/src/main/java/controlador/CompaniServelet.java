@@ -74,6 +74,7 @@ public class CompaniServelet extends HttpServlet {
             System.out.println("Insertado");
              List<CompaniaBean> compania = comp.findAll();
             request.setAttribute("compania", compania);
+            
             msg = "<div id=\"moo\" class=\"alert alert-success alert-dismissible\" role=\"alert\" auto-close=\"3000\">\n"
                     + "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span>\n"
                     + "  </button>\n"

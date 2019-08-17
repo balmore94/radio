@@ -82,6 +82,12 @@
                                                         <li><a href="genero?action=findAll">Mostrar</a></li>
                                                     </ul>
                                                 </li>
+                                                <li><a href="#">Por Radio</a>
+                                                    <ul class="dropdown">
+                                                        <li><a href="programaradio?action=showRegistro">Registrar</a></li>
+                                                        <li><a href="programaradio?action=findAll">Mostrar</a></li>
+                                                    </ul>
+                                                </li>
                                             </ul>
                                         </li>
                                         <li><a href="#">Compañia</a>
@@ -125,8 +131,9 @@
                                 </div>
                                 <!-- Nav End -->
 
-                            </div>
-                        </nav>
+                          </nav>  
+                    </div>
+                        
                     </div>
                 </div>
             </div>

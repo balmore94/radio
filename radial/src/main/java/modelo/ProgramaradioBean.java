@@ -5,8 +5,6 @@
  */
 package modelo;
 
-import java.sql.Date;
-import java.sql.Time;
 
 /**
  *
@@ -17,8 +15,8 @@ public class ProgramaradioBean {
     private int id_programaradio;
     private ProgramasBean programa;
     private RadioBean radio;
-    private Date fecha;
-    private Time hora_inicio;
+    private String fecha;
+    private String hora_inicio;
     private int duracion;
     private boolean repeticion;
     private EmisionesBean emisiones;
@@ -47,21 +45,23 @@ public class ProgramaradioBean {
         this.radio = radio;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
-    public Time getHora_inicio() {
+    public String getHora_inicio() {
         return hora_inicio;
     }
 
-    public void setHora_inicio(Time hora_inicio) {
+    public void setHora_inicio(String hora_inicio) {
         this.hora_inicio = hora_inicio;
     }
+
+    
 
     public int getDuracion() {
         return duracion;

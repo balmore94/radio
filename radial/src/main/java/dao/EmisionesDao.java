@@ -51,7 +51,7 @@ public class EmisionesDao {
 
     public List<EmisionesBean> consultarAll() {
         String sql = "select * from emisiones";
-        List<EmisionesBean> lista = new LinkedList<>();
+        List<EmisionesBean> emisiones = new LinkedList<>();
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -59,9 +59,9 @@ public class EmisionesDao {
             while (rs.next()) {
                 eb = new EmisionesBean(rs.getInt("id_emisiones"));
                 eb.setEmision(rs.getString("emision"));
-                lista.add(eb);
+                emisiones.add(eb);
             }
-            return lista;
+            return emisiones;
         } catch (Exception e) {
             return null;
         }
